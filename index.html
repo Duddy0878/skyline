@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./logo/gmail profile.jpg">
+    <title>Skyline elevators</title>
+
+    <style>
+        body{
+
+        }
+         .items{
+            display: flex;
+            gap: 30px;
+         }
+
+        .container{
+          border: rgb(219, 180, 3) 1px solid;
+          height: 160px;
+          width: 100px;
+        }
+
+        .container:hover{
+            transform: scale(0.9);
+            transition: 100ms;
+            cursor: pointer;
+        }
+
+        .container img{
+            width: 100%;
+        }
+
+        .container p{
+            font-size: 15px;
+            text-align: center;
+        }
+
+        /* img {
+    width: 150px !important;
+    height: auto !important;
+    display: block !important;
+} */
+    </style>
+
+</head>
+<body>
+    <div class="items">
+
+    </div>
+
+    <script>
+
+     async function fetchApi (api){
+            
+                    try {
+                        const res = await fetch(api);
+                        if (!res.ok) throw new Error(`Failed to fetch ${api}: ${res.status}`);
+                        return await res.json();
+                    } catch (err) {
+                        console.error(err);
+                        throw err; // important
+                    }
+                    
+        }
+
+        async function page(){
+
+      
+         let him = await fetchApi('/items')
+         console.log(him);
+         var html = ``
+         him.forEach(hi => {
+            html += 
+           ` <div class="container">
+                <div class="pic">
+                    <img src="${hi.img}" alt="">
+                </div>
+                <div class="name">
+                    <p> ${hi.name} </p>
+                </div>
+            </div>
+            `
+            
+         });
+
+         document.querySelector('.items').innerHTML = html
+
+           }
+           page()
+    </script>
+</body>
+</html>
