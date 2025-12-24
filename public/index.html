@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./logo/gmail profile.jpg">
+    <title>Skyline elevators</title>
+
+    <!-- https://raw.githubusercontent.com/Duddy0878/skyline/main/pic/cover%20for%20cunduit.jpg-->
+    <link rel="stylesheet" href="./css/style.css">
+
+</head>
+<body>
+
+    <div class="items">
+
+    </div>
+
+    <div class="side">
+      <div>
+       <div class="buttons active">
+                <button id="newF">New Item</button>
+                <button>New Order</button>
+                <button id="more">More</button>
+                <button>edit items</button>
+                <button>add invotory </button>
+                <button>order history</button>
+                <button id="ropeForm">measure rope </button>
+                <button>more</button>
+                <button>more</button>
+                <button>more</button>
+                <button>more</button>
+                <button>more</button>
+                <button>more</button>
+                <button>more</button>
+                <button>more</button>
+                <button>more</button>
+                <button>more</button>
+                <button>more</button>
+                <button>more</button>
+                <button>more</button>
+                <button>more</button>
+       </div>
+
+          <div class="forms">  
+
+            <div class="newF">
+                <form action="">
+                    <h2>New Item</h2>
+                    <div class="info">
+                        <div class="">
+                              <label for="">Item Name</label>
+                            <input type="text" name="name" placeholder="Item Name">
+                        </div>  
+                        <div class="">
+                              <label for="">Category</label>
+                            <select name="categorysN" id="category">
+                                <option value="" disabled selected> Category</option>
+                            </select>
+                        </div>  
+                        <div class="">
+                            <label for="">Img URL</label>
+                            <input type="text" name="img" placeholder="Item Image URL">
+                        </div>
+                        <div class="">
+                              <label for="">Size</label>
+                            <input type="text" name="size" placeholder="size">
+                        </div>   
+                        <div class="">
+                                <label for="">shop</label>
+                                <select name="shop" id="shop">
+                                    <option value="" disabled selected> Shop</option>
+                                    <option value="yes">Yes</option>
+                                    <option value="nto">Need To Order</option>
+                                    <option value="no">no</option>
+                                </select>
+                        </div>
+                        <div class=""> 
+                            Quantity<input type="number" placeholder="0">
+                        </div>
+                    </div>
+                        <h2>Prices</h2>
+                    <div class="stores">
+
+                          <div class="mega">
+                            Mega: <input type="number" placeholder="price">
+                          </div>
+                          <div class="wurtec">
+                            Wurtec: <input type="number" placeholder="price">
+                          </div>
+                          <div class="truimph">
+                            Truimph: <input type="number" placeholder="price">
+                          </div>
+                          <div class="draca">
+                            Draca: <input type="number" placeholder="price">
+                          </div>
+                    </div>
+                    <div class="addBTN">
+                    <button type="reset">Cancel</button>
+                    <button type="submit">Add Item</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="ropeForm">
+                <select name="" id="">
+                    <option value="1:1">1:1</option>
+                    <option value="2:1">2:1</option>
+                </select>
+                <input type="text" placeholder="pit">
+                <input type="text" placeholder="travel">
+                <input type="text" placeholder="overhead">
+                <input type="text" placeholder="rope Drop">
+                <div class="">
+                  <label for="">Half Way Box ?</label>
+                  <input name="halfWayBox" type="checkbox">
+                </div>
+                <div class="">
+                  <label for="">Double Wrap ?</label>
+                  <input name="doubleWrap" type="checkbox">
+                </div>
+
+                <button type="submit">Calculate</button>
+
+            </div>
+
+            <div class="ropeOutput">
+              <h1>Rope Results</h1>
+              <h4>Pls Review</h4>
+              <div class="resultsContainer">
+
+                <div class="">
+                  <label for="">Hoist Rope:</label>
+                  <input type="text" name="hoistRope" placeholder="678.9 ft">
+                </div>
+                <div class="">
+                  <label for="">Governer Rope:</label>
+                  <input type="text" name="governerRope" placeholder="678.9 ft">
+                </div>
+                <div class="">
+                  <label for="">whisper Flex:</label>
+                  <input type="text" name="whisperFlex" placeholder="678.9 ft">
+                </div>
+                <div class="">
+                  <label for="">travel cable:</label>
+                  <input type="text" name="travelCable" placeholder="678.9 ft">
+                </div>
+                <div class="">
+                  <label for="">travel multi:</label>
+                  <input type="text" name="travelMulti" placeholder="678.9 ft">
+                </div>
+                <div class="">
+                  <label for="">hoistway:</label>
+                  <input type="text" name="hoistway" placeholder="678.9 ft">
+                </div>
+
+                <div class="">
+                  <label for="">Job Site:</label>
+                  <select name="" id="jobsRope">
+                        
+                  </select>
+                </div>
+                <div class="">
+                  <label for="">Car #:</label>
+                  <input type="text" name="car" placeholder="">
+                </div>
+
+                <button id="placeOrder">
+                  place order
+                </button>
+
+                <button id="saveFLater">
+                  save for later
+                </button>
+
+              </div>
+
+            </div>
+
+
+
+         </div>
+       </div>
+    </div>
+
+    <script type="module" src="./js/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>
