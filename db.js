@@ -20,11 +20,11 @@ pool.getConnection((err, connection) => {
   if (err) {
     console.error('Database connection failed:', err);
     console.log('Connection config used:', {
-host:  '127.0.0.1',
-  port: 3306,
-  user:  'root',
-  password:  'Duddy0878',
-  database:  'small material',
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    port: process.env.DB_PORT,
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
