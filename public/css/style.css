@@ -88,10 +88,9 @@ h2{
 .side{
     position: fixed;
     right: 40px;
-    top:60px;
+    top: 7%;
     width: 35%;
 }
-
 
 .side .buttons{
     height: 90vh;
@@ -337,6 +336,56 @@ h2{
             cursor: pointer;
             transition: 200ms;
         }
+
+    .addInventory{
+        display: grid;
+        justify-items: center;
+        align-items: center;
+        grid-template-columns: 1fr;
+        padding-top: 5%;
+
+        text-align: center;
+    }
+
+    .addInventory > div{
+        font-size: 25px;
+        width: 100%;
+        height: 40vh;
+        padding: 1%;
+        margin-top: 3%;
+    }
+
+    .addInventory button{
+       padding: 2%;
+       background: transparent;
+       border: #FAB519 2px solid;
+       border-radius: 5%;
+       color: #FAB519;
+       width: 30%;
+       margin-top: 15%;
+    }
+
+    .addInventory button:hover{
+        background: #FAB519;
+        color: white;
+        cursor: pointer;
+        transition: 200ms;
+    }
+
+   @media  (max-width: 1600px) {
+
+        .side{
+            position: absolute;
+            width: 40%;
+            right: 5px;
+        }
+
+        .forms{
+            top: 0px;
+            height: 90vh;
+        }
+
+    }
 
 
 

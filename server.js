@@ -46,6 +46,27 @@ app.post('/items', async (req, res) => {
   }
 });
 
+app.get('/items:id', async (req, res) => {
+  try {
+    
+    const id = parseInt(req.params.id);
+    
+    
+    const [result] = await db.execute('SELECT * FROM items WHERE id = ? ', [id]);
+    res.json(result[0]);
+  } catch (error) {
+    res.status(500).json({ 
+      success: false, 
+      error: error.message,
+      // env: {
+        //   host:  '127.0.0.1',
+        //   user:  'root',
+        //   database:  'small material',
+        // }
+      });
+    }
+  });
+
 app.get('/categorys', async (req, res) => {
     console.log('GET /categorys called');
     try {
@@ -60,6 +81,7 @@ app.get('/categorys', async (req, res) => {
       });
     }
 });
+
 app.get('/category:id', async (req, res) => {
   try {
     

@@ -6,6 +6,8 @@ import {fetchApi, fetchApiWithId , postApi} from './api.js'
         buttonsClick()
         addItem()
 
+        let receiver 
+
         async function loadItems(){
 
          let items = await fetchApi('/items')
@@ -19,6 +21,7 @@ import {fetchApi, fetchApiWithId , postApi} from './api.js'
 
             let container = document.createElement('div')
             container.className = 'container'
+            container.id = item.id
 
             let pic = document.createElement('div')
             pic.className = 'pic'
@@ -54,14 +57,17 @@ import {fetchApi, fetchApiWithId , postApi} from './api.js'
             }
         }
 
+        let status = false;
+        
         function buttonsClick(){
             let click = document.querySelector('.side .buttons')
-
-            click.addEventListener('click', (e)=>{
+            let counter = 0;
+            click.addEventListener('click', async (e)=>{
                 let btn = e.target
                 let id = btn.id
                 if(id === 'more'){
                     document.querySelector(`.forms`).classList.remove('active')
+                    status = false;
                     return
                 }
                 document.querySelector(`.forms`).classList.add('active')
@@ -69,7 +75,14 @@ import {fetchApi, fetchApiWithId , postApi} from './api.js'
                     div.style.display = 'none'
                 })              
                 document.querySelector(`.forms .${id}`).style.display = 'GRID'
-
+                if(id === 'newF'){
+                    status = false;
+                }
+                if(id === 'newOrder' || id === 'editItems' || id === 'addInventory'){
+                      status = id;
+                      await getItem(counter)
+                }
+                counter++;
             })
         }
 
@@ -325,6 +338,81 @@ import {fetchApi, fetchApiWithId , postApi} from './api.js'
                 input.appendChild(option)
             })
         }
+
+        async function getItem(counter){
+            if (counter > 0) return;
+            let id = '';
+            document.querySelector('.items').addEventListener('click', async (e)=>{
+                if(!status) return;
+                let itemDiv = e.target.closest('.container') 
+                if(!itemDiv) return;
+                id = itemDiv.id 
+                let item = await fetchApiWithId('/items', id)
+
+                if(status === 'newOrder'){
+
+                }
+                if(status === 'editItems'){
+
+                }
+                if(status === 'addInventory'){
+                    addInventory(item)
+                }
+
+
+                
+            })
+
+        }
+
+        function newOrder(){
+
+        }
+
+        function editItems(){
+
+        }
+
+        function addInventory(item){
+            let addDiv = document.querySelector('.addInventory')
+            addDiv.innerHTML = ''
+
+            let div = document.createElement('div')
+            div.className = 'itemInInventory'
+            addDiv.appendChild(div)
+            
+            let img = document.createElement('div')
+            img.style.justifyContent = 'center'
+            img.innerHTML = `<img src="${item.img}" alt="" style="width:100%;height:300px;object-fit:contain;" onerror="this.src='https://raw.githubusercontent.com/Duddy0878/skyline/main/pic/Asset%203%404x.png'">`
+            div.appendChild(img)
+            
+            let name = document.createElement('div')
+            name.style.fontSize = '24px'
+            name.innerHTML = `<p> ${item.name} </p> `
+            div.appendChild(name)
+
+
+            let input = document.createElement('input')
+            input.type = 'number'
+            input.style.width = '50%'
+            input.placeholder = 'Quantity to add'
+            addDiv.appendChild(input)
+
+            let button = document.createElement('button')
+            button.innerText = 'Add Inventory'
+            addDiv.appendChild(button)
+      
+            button.addEventListener('click', () => {
+                let quantity = parseInt(input.value, 10);
+                if (isNaN(quantity) || quantity <= 0) {
+                    alert('Please enter a valid quantity');
+                    return;
+                }
+                // Add inventory logic here
+            });
+        }
+
+        
 
 
 
