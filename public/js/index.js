@@ -184,11 +184,11 @@ import {fetchApi, fetchApiWithId , postApi} from './api.js'
 
             let travelCable = 0
             let travelMulti = 0
-            let hoistway = Math.round((pit + travel + overhead) / 12)
+            let hoistway = Math.round((pit + travel + overhead + 480) / 12)
 
             if(halfWayBox){
-                travelCable = Math.round(((totalTravel / 2) + 120) / 12)
-                travelMulti = Math.round((totalTravel + 480) / 12)
+                travelCable = Math.round(((totalTravel / 2) + 480) / 12)
+                travelMulti = Math.round(((totalTravel / 2) + 240)/ 12)
             }
             else{
                 travelCable = Math.round((totalTravel + 960) / 12)
