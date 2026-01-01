@@ -179,7 +179,8 @@ import {fetchApi, fetchApiWithId , postApi} from './api.js'
                 hoist = Math.round((totalTravel * 2 + 240) / 12 )
             }
 
-            let governer = Math.round((totalTravel) * 2 / 12)
+            let governer = Math.round(totalTravel * 2 / 12)
+            log('new version');
             let whisperFlex = Math.round((totalTravel) / 12)
 
             let travelCable = 0
