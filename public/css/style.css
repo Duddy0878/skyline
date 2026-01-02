@@ -35,6 +35,13 @@ h2{
     gap: 30px;
     }
 
+    .categoryHeader{
+        width: 100%;
+        border-bottom: #FAB519 2px solid;
+        margin-top: 30px;
+        margin-bottom: 10px;
+    }
+
 .container{
     /* border: #FAB519 3px solid; */
     position: relative;

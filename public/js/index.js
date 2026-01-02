@@ -23,7 +23,7 @@ import {fetchApi, fetchApiWithId , postApi} from './api.js'
                 let categoryHeader = document.createElement('div')
                 categoryHeader.className = 'categoryHeader'
                 let category = await fetchApiWithId('/category',item.cate_id)
-                categoryHeader.innerHTML = `<h2 style="border-bottom: 4px solid ${category.color} ; padding-bottom: 5px;"> ${category.name} </h2>`
+                categoryHeader.innerHTML = `<h2> ${category.name} </h2>`
                 itemsDiv.appendChild(categoryHeader)
             }
             let category = await fetchApiWithId('/category',item.cate_id)
