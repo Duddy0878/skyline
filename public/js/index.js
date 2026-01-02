@@ -14,6 +14,8 @@ import {fetchApi, fetchApiWithId , postApi} from './api.js'
 
          let itemsDiv = document.querySelector('.items')
          itemsDiv.innerHTML = ''
+         var cateCheck = '';
+         items.sort((a, b) => a.cate_id - b.cate_id);
 
          for (const item of items) {
             let category = await fetchApiWithId('/category',item.cate_id)
