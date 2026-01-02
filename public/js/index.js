@@ -17,39 +17,45 @@ import {fetchApi, fetchApiWithId , postApi , patchApi} from './api.js'
          var cateCheck = '';
          items.sort((a, b) => a.cate_id - b.cate_id);
 
-         for (const item of items) {
-            if(item.cate_id !== cateCheck){
-                cateCheck = item.cate_id
-                let categoryHeader = document.createElement('div')
-                categoryHeader.className = 'categoryHeader'
-                let category = await fetchApiWithId('/category',item.cate_id)
-                categoryHeader.innerHTML = `<h2> ${upperCaseFirstLetter(category.name)} </h2>`
-                itemsDiv.appendChild(categoryHeader)
-            }
-            let category = await fetchApiWithId('/category',item.cate_id)
-            console.log(category,category.color);
+        for(const item of items){
+            var itemUrl = item.img
+            item.img = githubToLocal(itemUrl)
+            await patchApi('/items/', item.id, {img: item.img})
+        }
 
-            let container = document.createElement('div')
-            container.className = 'container'
-            container.id = item.id
+        //  for (const item of items) {
+        //     if(item.cate_id !== cateCheck){
+        //         cateCheck = item.cate_id
+        //         let categoryHeader = document.createElement('div')
+        //         categoryHeader.className = 'categoryHeader'
+        //         let category = await fetchApiWithId('/category',item.cate_id)
+        //         categoryHeader.innerHTML = `<h2> ${upperCaseFirstLetter(category.name)} </h2>`
+        //         itemsDiv.appendChild(categoryHeader)
+        //     }
+        //     let category = await fetchApiWithId('/category',item.cate_id)
+        //     console.log(category,category.color);
 
-            let pic = document.createElement('div')
-            pic.className = 'pic'
-            pic.innerHTML = `<img src="${item.img}" alt="" onerror="this.src='https://raw.githubusercontent.com/Duddy0878/skyline/main/pic/Asset%203%404x.png'">`
-            container.appendChild(pic)
+        //     let container = document.createElement('div')
+        //     container.className = 'container'
+        //     container.id = item.id
 
-            let name = document.createElement('div')
-            name.className = 'name'
-            name.innerHTML = `<p> ${item.name} </p> `
-            container.appendChild(name)
+        //     let pic = document.createElement('div')
+        //     pic.className = 'pic'
+        //     pic.innerHTML = `<img src="${item.img}" alt="" onerror="this.src='https://raw.githubusercontent.com/Duddy0878/skyline/main/pic/Asset%203%404x.png'">`
+        //     container.appendChild(pic)
 
-            let cate = document.createElement('div')
-            cate.className = 'cate'
-            container.appendChild(cate)
-            cate.style.background = category.color
+        //     let name = document.createElement('div')
+        //     name.className = 'name'
+        //     name.innerHTML = `<p> ${item.name} </p> `
+        //     container.appendChild(name)
 
-            itemsDiv.appendChild(container)
-         }
+        //     let cate = document.createElement('div')
+        //     cate.className = 'cate'
+        //     container.appendChild(cate)
+        //     cate.style.background = category.color
+
+        //     itemsDiv.appendChild(container)
+        //  }
       
            }
 
@@ -433,15 +439,9 @@ import {fetchApi, fetchApiWithId , postApi , patchApi} from './api.js'
   return 'pic/' + filename;
 }
 
-// Example usage:
-const githubUrl = "https://raw.githubusercontent.com/Duddy0878/skyline/main/pic/black%20electric%20tape.webp";
-const localUrl = githubToLocal(githubUrl); // "pic/black%20electric%20tape.webp"
 
-        for(item of items){
-            var itemUrl = item.img
-            item.img = githubToLocal(itemUrl)
-            await patchApi('/items/', item.id, {img: item.img})
-        }
+
+
 
         
 
