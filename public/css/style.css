@@ -38,8 +38,7 @@ h2{
     .categoryHeader{
         width: 80%;
         border-bottom: #FAB519 2px solid;
-        margin-top: 30px;
-        margin-bottom: 10px;
+        margin: 30px auto 10px auto;
         color: #FAB519;
     }
 
