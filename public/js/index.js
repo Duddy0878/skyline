@@ -23,7 +23,7 @@ import {fetchApi, fetchApiWithId , postApi} from './api.js'
                 let categoryHeader = document.createElement('div')
                 categoryHeader.className = 'categoryHeader'
                 let category = await fetchApiWithId('/category',item.cate_id)
-                categoryHeader.innerHTML = `<h2> ${category.name} </h2>`
+                categoryHeader.innerHTML = `<h2> ${upperCaseFirstLetter(category.name)} </h2>`
                 itemsDiv.appendChild(categoryHeader)
             }
             let category = await fetchApiWithId('/category',item.cate_id)
@@ -420,6 +420,10 @@ import {fetchApi, fetchApiWithId , postApi} from './api.js'
                 }
                 // Add inventory logic here
             });
+        }
+
+        function upperCaseFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
         }
 
         
