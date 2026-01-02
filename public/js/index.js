@@ -18,6 +18,14 @@ import {fetchApi, fetchApiWithId , postApi} from './api.js'
          items.sort((a, b) => a.cate_id - b.cate_id);
 
          for (const item of items) {
+            if(item.cate_id !== cateCheck){
+                cateCheck = item.cate_id
+                let categoryHeader = document.createElement('div')
+                categoryHeader.className = 'categoryHeader'
+                let category = await fetchApiWithId('/category',item.cate_id)
+                categoryHeader.innerHTML = `<h2 style="border-bottom: 4px solid ${category.color} ; padding-bottom: 5px;"> ${category.name} </h2>`
+                itemsDiv.appendChild(categoryHeader)
+            }
             let category = await fetchApiWithId('/category',item.cate_id)
             console.log(category,category.color);
 
