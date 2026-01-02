@@ -66,6 +66,47 @@ app.get('/items:id', async (req, res) => {
       });
     }
   });
+app.patch('/items:id', async (req, res) => {
+  try {
+    
+    const id = parseInt(req.params.id);
+    const { name, img, cate_id ,size} = req.body;
+
+    
+      const updates = []
+      const values = []
+
+      if (name !== undefined) {
+        updates.push('name = ?')
+        values.push(name)
+      }
+      if (img !== undefined) {
+        updates.push('img = ?')
+        values.push(img)
+      }
+      if (cate_id !== undefined) {
+        updates.push('cate_id = ?')
+        values.push(cate_id)
+      }
+      if (size !== undefined) {
+        updates.push('size = ?')
+        values.push(size)
+      }
+
+      if (updates.length > 0) {
+        const sql = `UPDATE items SET ${updates.join(', ')} WHERE id = ?`;
+        values.push(id);
+        await db.execute(sql, values);
+      }
+
+      res.json({ success: true });
+    } catch (error) {
+    res.status(500).json({ 
+      success: false, 
+      error: error.message,
+      });
+    }
+  });
 
 app.get('/categorys', async (req, res) => {
     console.log('GET /categorys called');
@@ -82,7 +123,7 @@ app.get('/categorys', async (req, res) => {
     }
 });
 
-app.get('/category:id', async (req, res) => {
+app.post('/category:id', async (req, res) => {
   try {
     
     const id = parseInt(req.params.id);

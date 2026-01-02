@@ -1,5 +1,5 @@
 
-import {fetchApi, fetchApiWithId , postApi} from './api.js'
+import {fetchApi, fetchApiWithId , postApi , patchApi} from './api.js'
 
         loadItems()
         loadCategorys()
@@ -424,6 +424,23 @@ import {fetchApi, fetchApiWithId , postApi} from './api.js'
 
         function upperCaseFirstLetter(string) {
             return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+        function githubToLocal(url) {
+  // Extract the filename from the GitHub URL
+  const parts = url.split('/');
+  const filename = parts[parts.length - 1];
+  // Return the local path (adjust 'pic/' if your folder name is different)
+  return 'pic/' + filename;
+}
+
+// Example usage:
+const githubUrl = "https://raw.githubusercontent.com/Duddy0878/skyline/main/pic/black%20electric%20tape.webp";
+const localUrl = githubToLocal(githubUrl); // "pic/black%20electric%20tape.webp"
+
+        for(item of items){
+            var itemUrl = item.img
+            item.img = githubToLocal(itemUrl)
+            await patchApi('/items/', item.id, {img: item.img})
         }
 
         
