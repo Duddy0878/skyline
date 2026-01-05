@@ -20,42 +20,42 @@ import {fetchApi, fetchApiWithId , postApi , patchApi} from './api.js'
         for(const item of items){
             var itemUrl = item.img
             item.img = githubToLocal(itemUrl)
-            await patchApi('/items/', item.id, {img: item.img})
+            await patchApi('/items', item.id, {img: item.img})
         }
 
-        //  for (const item of items) {
-        //     if(item.cate_id !== cateCheck){
-        //         cateCheck = item.cate_id
-        //         let categoryHeader = document.createElement('div')
-        //         categoryHeader.className = 'categoryHeader'
-        //         let category = await fetchApiWithId('/category',item.cate_id)
-        //         categoryHeader.innerHTML = `<h2> ${upperCaseFirstLetter(category.name)} </h2>`
-        //         itemsDiv.appendChild(categoryHeader)
-        //     }
-        //     let category = await fetchApiWithId('/category',item.cate_id)
-        //     console.log(category,category.color);
+         for (const item of items) {
+            if(item.cate_id !== cateCheck){
+                cateCheck = item.cate_id
+                let categoryHeader = document.createElement('div')
+                categoryHeader.className = 'categoryHeader'
+                let category = await fetchApiWithId('/category',item.cate_id)
+                categoryHeader.innerHTML = `<h2> ${upperCaseFirstLetter(category.name)} </h2>`
+                itemsDiv.appendChild(categoryHeader)
+            }
+            let category = await fetchApiWithId('/category',item.cate_id)
+            console.log(category,category.color);
 
-        //     let container = document.createElement('div')
-        //     container.className = 'container'
-        //     container.id = item.id
+            let container = document.createElement('div')
+            container.className = 'container'
+            container.id = item.id
 
-        //     let pic = document.createElement('div')
-        //     pic.className = 'pic'
-        //     pic.innerHTML = `<img src="${item.img}" alt="" onerror="this.src='https://raw.githubusercontent.com/Duddy0878/skyline/main/pic/Asset%203%404x.png'">`
-        //     container.appendChild(pic)
+            let pic = document.createElement('div')
+            pic.className = 'pic'
+            pic.innerHTML = `<img src="${item.img}" alt="" onerror="this.src='https://raw.githubusercontent.com/Duddy0878/skyline/main/pic/Asset%203%404x.png'">`
+            container.appendChild(pic)
 
-        //     let name = document.createElement('div')
-        //     name.className = 'name'
-        //     name.innerHTML = `<p> ${item.name} </p> `
-        //     container.appendChild(name)
+            let name = document.createElement('div')
+            name.className = 'name'
+            name.innerHTML = `<p> ${item.name} </p> `
+            container.appendChild(name)
 
-        //     let cate = document.createElement('div')
-        //     cate.className = 'cate'
-        //     container.appendChild(cate)
-        //     cate.style.background = category.color
+            let cate = document.createElement('div')
+            cate.className = 'cate'
+            container.appendChild(cate)
+            cate.style.background = category.color
 
-        //     itemsDiv.appendChild(container)
-        //  }
+            itemsDiv.appendChild(container)
+         }
       
            }
 
