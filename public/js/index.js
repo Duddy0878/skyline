@@ -41,7 +41,7 @@ import {fetchApi, fetchApiWithId , postApi , patchApi} from './api.js'
 
             let pic = document.createElement('div')
             pic.className = 'pic'
-            pic.innerHTML = `<img src="${item.img}" alt="" onerror="this.src='https://raw.githubusercontent.com/Duddy0878/skyline/main/pic/Asset%203%404x.png'">`
+            pic.innerHTML = `<img src="${item.img}" alt="" onerror="this.src='./pic/Asset 3@4x.png'">`
             container.appendChild(pic)
 
             let name = document.createElement('div')
