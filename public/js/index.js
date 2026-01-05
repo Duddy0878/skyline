@@ -17,11 +17,11 @@ import {fetchApi, fetchApiWithId , postApi , patchApi} from './api.js'
          var cateCheck = '';
          items.sort((a, b) => a.cate_id - b.cate_id);
 
-        for(const item of items){
-            var itemUrl = item.img
-            item.img = githubToLocal(itemUrl)
-            await patchApi('/items', item.id, {img: item.img})
-        }
+        // for(const item of items){
+        //     var itemUrl = item.img
+        //     item.img = githubToLocal(itemUrl)
+        //     await patchApi('/items', item.id, {img: item.img})
+        // }
 
          for (const item of items) {
             if(item.cate_id !== cateCheck){

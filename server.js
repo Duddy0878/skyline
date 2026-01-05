@@ -123,7 +123,7 @@ app.get('/categorys', async (req, res) => {
     }
 });
 
-app.post('/category:id', async (req, res) => {
+app.get('/category:id', async (req, res) => {
   try {
     
     const id = parseInt(req.params.id);
