@@ -149,7 +149,7 @@ import {fetchApi, fetchApiWithId , postApi , patchApi} from './api.js'
                     color: '#FAB519',
                     border: '#FAB519 5px solid',
                     // *** This is where you add your logo image path ***
-                    imageUrl: 'https://raw.githubusercontent.com/Duddy0878/skyline/main/pic/Asset%203%404x.png', 
+                    imageUrl: '/pic/Asset%203%404x.png', 
                     imageWidth: 200, // Set the width of your logo
                     imageHeight: 200, // Set the height of your logo
                     imageAlt: 'Custom Logo', // Alternative text for accessibility
@@ -290,7 +290,7 @@ import {fetchApi, fetchApiWithId , postApi , patchApi} from './api.js'
                     color: '#FAB519',
                     border: '#FAB519 5px solid',
                     // *** This is where you add your logo image path ***
-                    imageUrl: 'https://raw.githubusercontent.com/Duddy0878/skyline/main/pic/Asset%203%404x.png', 
+                    imageUrl: '/pic/Asset%203%404x.png', 
                     imageWidth: 200, // Set the width of your logo
                     imageHeight: 200, // Set the height of your logo
                     imageAlt: 'Custom Logo', // Alternative text for accessibility
@@ -399,7 +399,7 @@ import {fetchApi, fetchApiWithId , postApi , patchApi} from './api.js'
             
             let img = document.createElement('div')
             img.style.justifyContent = 'center'
-            img.innerHTML = `<img src="${item.img}" alt="" style="width:100%;height:300px;object-fit:contain;" onerror="this.src='https://raw.githubusercontent.com/Duddy0878/skyline/main/pic/Asset%203%404x.png'">`
+            img.innerHTML = `<img src="${item.img}" alt="" style="width:100%;height:300px;object-fit:contain;" onerror="this.src='/pic/Asset%203%404x.png'">`
             div.appendChild(img)
             
             let name = document.createElement('div')
