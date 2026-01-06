@@ -177,20 +177,24 @@ import {fetchApi, fetchApiWithId , postApi , patchApi} from './api.js'
              
             // results
             let hoist = 0
+            let whisperFlex = 0
+            
+            let governer = Math.round((totalTravel * 2 - ropeDrop) / 12)
 
             if(ropingType === '1:1'){
                 if(doubleWrap){
                     hoist = Math.round((totalTravel + 384) / 12 )
+                    whisperFlex = Math.round((pit + travel + 420 ) / 12 )
                 }
                 else{
                     hoist = Math.round((totalTravel + 240) / 12 )
+                    whisperFlex = Math.round((pit + travel + 300  ) / 12)
                 }
             }else{
                 hoist = Math.round((totalTravel * 2 + 240) / 12 )
+                whisperFlex = Math.round((pit + travel + 300  ) / 12)
             }
 
-            let governer = Math.round((totalTravel * 2 - ropeDrop) / 12)
-            let whisperFlex = Math.round((pit + travel + 300  ) / 12)
 
             let travelCable = 0
             let travelMulti = 0
