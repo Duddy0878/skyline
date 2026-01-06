@@ -17,12 +17,6 @@ import {fetchApi, fetchApiWithId , postApi , patchApi} from './api.js'
          var cateCheck = '';
          items.sort((a, b) => a.cate_id - b.cate_id);
 
-        // for(const item of items){
-        //     var itemUrl = item.img
-        //     item.img = githubToLocal(itemUrl)
-        //     await patchApi('/items', item.id, {img: item.img})
-        // }
-
          for (const item of items) {
             if(item.cate_id !== cateCheck){
                 cateCheck = item.cate_id
@@ -196,7 +190,7 @@ import {fetchApi, fetchApiWithId , postApi , patchApi} from './api.js'
             }
 
             let governer = Math.round((totalTravel * 2 - ropeDrop) / 12)
-            let whisperFlex = Math.round((totalTravel) / 12)
+            let whisperFlex = Math.round((pit + travel + 300  ) / 12)
 
             let travelCable = 0
             let travelMulti = 0
@@ -431,13 +425,7 @@ import {fetchApi, fetchApiWithId , postApi , patchApi} from './api.js'
         function upperCaseFirstLetter(string) {
             return string.charAt(0).toUpperCase() + string.slice(1);
         }
-        function githubToLocal(url) {
-  // Extract the filename from the GitHub URL
-  const parts = url.split('/');
-  const filename = parts[parts.length - 1];
-  // Return the local path (adjust 'pic/' if your folder name is different)
-  return 'pic/' + filename;
-}
+
 
 
 
