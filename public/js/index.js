@@ -446,11 +446,14 @@ import {fetchApi, fetchApiWithId , postApi , patchApi} from './api.js'
             const formData = new FormData();
             formData.append('image', file);
 
-            await fetch('/upload-pic', {
+           const check = await fetch('/upload-pic', {
                 method: 'POST',
                 body: formData
             });
 
+            if (!check.ok) {
+                console.error('Image upload failed');
+            }
          }
 
 
