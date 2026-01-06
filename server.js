@@ -1,10 +1,14 @@
 
 const express = require('express');
 const db = require('./db');
+const multer = require('multer');
 const cors = require('cors');
 const path = require('path');
 const fs = require('fs');
 const { log } = require('console');
+
+const picFolder = path.join(__dirname, 'public', 'pic');
+const upload = multer({ dest: picFolder });
 
 const app = express();
 app.use(express.json());
@@ -175,6 +179,19 @@ app.get('/jobs', async (req, res) => {
     });
   }
 });
+
+app.get('/list-pic', (req, res) => {
+  fs.readdir(picFolder, (err, files) => {
+    if (err) return res.status(500).json([]);
+    res.json(files);
+  });
+});
+
+app.post('/upload-pic', upload.single('image'), (req, res) => {
+  res.json({ success: true });
+});
+
+
 
 
   

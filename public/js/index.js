@@ -107,6 +107,8 @@ import {fetchApi, fetchApiWithId , postApi , patchApi} from './api.js'
                 let cate_id = document.querySelector('.newF form select[name="categorysN"]').value
                 let size = document.querySelector('.newF form input[name="size"]').value
 
+                await handleImageUpload(document.querySelector('.newF form input[type="file"]').files[0]);
+
                 if (!name || !cate_id ){
                     let empty = '';
     
@@ -429,6 +431,27 @@ import {fetchApi, fetchApiWithId , postApi , patchApi} from './api.js'
         function upperCaseFirstLetter(string) {
             return string.charAt(0).toUpperCase() + string.slice(1);
         }
+
+        async function handleImageUpload(file) {
+
+            const response = await fetch('/list-pic');
+            const files = await response.json();
+
+            // 2. Check if file already exists
+            if (files.includes(file.name)) {
+                return;
+            }
+
+            // 3. Upload file to server
+            const formData = new FormData();
+            formData.append('image', file);
+
+            await fetch('/upload-pic', {
+                method: 'POST',
+                body: formData
+            });
+
+         }
 
 
 
