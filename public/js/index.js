@@ -103,10 +103,10 @@ import {fetchApi, fetchApiWithId , postApi , patchApi} from './api.js'
            click.addEventListener('click', async (e)=>{
                 e.preventDefault();
                 let name = document.querySelector('.newF form input[name="name"]').value
-                let img =  'pic/'+ document.querySelector('.newF form input[type="file"]').files[0]
+                let img =  'pic/'+ document.querySelector('.newF form input[type="file"]').files[0].name
                 let cate_id = document.querySelector('.newF form select[name="categorysN"]').value
                 let size = document.querySelector('.newF form input[name="size"]').value
-                
+
                 if (!name || !cate_id ){
                     let empty = '';
     
