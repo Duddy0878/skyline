@@ -17,7 +17,7 @@ app.use(express.urlencoded({ limit: '20mb', extended: true }));
 const picFolder = path.join(__dirname, 'public', 'pic');
 const upload = multer({
   dest: picFolder,
-  limits: { fileSize: 20 * 1024 * 1024 } // 20 MB
+  limits: { fileSize: 50 * 1024 * 1024 } // 50 MB
 });
 
 

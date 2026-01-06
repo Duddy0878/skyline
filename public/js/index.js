@@ -444,7 +444,7 @@ import {fetchApi, fetchApiWithId , postApi , patchApi} from './api.js'
 
             // 3. Upload file to server
             const formData = new FormData(file);
-            // formData.append('image', file);
+            formData.append('image', file);
 
             await fetch('/upload-pic', {
                 method: 'POST',
