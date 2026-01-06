@@ -7,8 +7,14 @@ const path = require('path');
 const fs = require('fs');
 const { log } = require('console');
 
+app.use(express.json({ limit: '20mb' })); // or higher if needed
+app.use(express.urlencoded({ limit: '20mb', extended: true }));
+
 const picFolder = path.join(__dirname, 'public', 'pic');
-const upload = multer({ dest: picFolder });
+const upload = multer({
+  dest: picFolder,
+  limits: { fileSize: 20 * 1024 * 1024 } // 20 MB
+});
 
 const app = express();
 app.use(express.json());
