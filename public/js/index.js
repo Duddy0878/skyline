@@ -103,7 +103,7 @@ import {fetchApi, fetchApiWithId , postApi , patchApi} from './api.js'
            click.addEventListener('click', async (e)=>{
                 e.preventDefault();
                 let name = document.querySelector('.newF form input[name="name"]').value
-                let img = 'https://raw.githubusercontent.com/Duddy0878/skyline/main/pic/' + document.querySelector('.newF form input[name="img"]').value
+                let img =  'pic/'+ document.querySelector('.newF form input[type="file"]').files[0]
                 let cate_id = document.querySelector('.newF form select[name="categorysN"]').value
                 let size = document.querySelector('.newF form input[name="size"]').value
                 
