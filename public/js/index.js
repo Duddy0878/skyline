@@ -104,7 +104,7 @@ import {fetchApi, fetchApiWithId , postApi , patchApi} from './api.js'
                 e.preventDefault();
                 let imgHtml = document.querySelector('.newF form input[type="file"]').files;
                 let name = document.querySelector('.newF form input[name="name"]').value
-                let img = imgHtml[0] ? 'pic/'+ imgHtml[0].name : null
+                let img = imgHtml.length > 0 ? 'pic/'+ imgHtml[0].name : null
                 let cate_id = document.querySelector('.newF form select[name="categorysN"]').value
                 let size = document.querySelector('.newF form input[name="size"]').value
 
