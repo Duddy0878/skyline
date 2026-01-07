@@ -108,7 +108,9 @@ import {fetchApi, fetchApiWithId , postApi , patchApi} from './api.js'
                 let cate_id = document.querySelector('.newF form select[name="categorysN"]').value
                 let size = document.querySelector('.newF form input[name="size"]').value
 
-                await handleImageUpload(imgHtml[0]);
+                let fin = await handleImageUpload(imgHtml[0]);
+                console.log(fin);
+                
                 if (!name || !cate_id ){
                     let empty = '';
     
@@ -454,7 +456,10 @@ import {fetchApi, fetchApiWithId , postApi , patchApi} from './api.js'
 
             if (!check.ok) {
                 console.error('Image upload failed');
+                return false
             }
+h
+            
          }
 
 
