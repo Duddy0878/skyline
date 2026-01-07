@@ -130,6 +130,7 @@ import {fetchApi, fetchApiWithId , postApi , patchApi} from './api.js'
                             popup: 'my-swal-popup'
                         }                        
                     })
+                    return
                 }
 
 
