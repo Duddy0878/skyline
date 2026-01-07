@@ -17,17 +17,17 @@ import {fetchApi, fetchApiWithId , postApi , patchApi} from './api.js'
          var cateCheck = '';
          items.sort((a, b) => a.cate_id - b.cate_id);
 
+         let category = await fetchApi('/category')
+
          for (const item of items) {
+            let currentCategory = category.find(cat => cat.id === item.cate_id);
             if(item.cate_id !== cateCheck){
                 cateCheck = item.cate_id
                 let categoryHeader = document.createElement('div')
                 categoryHeader.className = 'categoryHeader'
-                let category = await fetchApiWithId('/category',item.cate_id)
-                categoryHeader.innerHTML = `<h2> ${upperCaseFirstLetter(category.name)} </h2>`
+                categoryHeader.innerHTML = `<h2> ${upperCaseFirstLetter(currentCategory.name)} </h2>`
                 itemsDiv.appendChild(categoryHeader)
             }
-            let category = await fetchApiWithId('/category',item.cate_id)
-            console.log(category,category.color);
 
             let container = document.createElement('div')
             container.className = 'container'
@@ -46,7 +46,7 @@ import {fetchApi, fetchApiWithId , postApi , patchApi} from './api.js'
             let cate = document.createElement('div')
             cate.className = 'cate'
             container.appendChild(cate)
-            cate.style.background = category.color
+            cate.style.background = currentCategory.color
 
             itemsDiv.appendChild(container)
          }
