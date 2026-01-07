@@ -14,10 +14,21 @@ app.use(cors());
 app.use(express.json({ limit: '20mb' })); // or higher if needed
 app.use(express.urlencoded({ limit: '20mb', extended: true }));
 
+
 const picFolder = path.join(__dirname, 'public', 'pic');
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, picFolder);
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname); // Save with original name
+  }
+});
+
 const upload = multer({
-  dest: picFolder,
-  limits: { fileSize: 50 * 1024 * 1024 } // 50 MB
+  storage: storage,
+  limits: { fileSize: 20 * 1024 * 1024 } // 20 MB
 });
 
 
