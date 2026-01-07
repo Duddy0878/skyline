@@ -22,7 +22,7 @@ const storage = multer.diskStorage({
     cb(null, picFolder);
   },
   filename: function (req, file, cb) {
-    cb(null, file.originalname); // Save with original name
+    cb(null, file.originalname); // Save with original filename
   }
 });
 
