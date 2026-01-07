@@ -17,7 +17,7 @@ import {fetchApi, fetchApiWithId , postApi , patchApi} from './api.js'
          var cateCheck = '';
          items.sort((a, b) => a.cate_id - b.cate_id);
 
-         let category = await fetchApi('/category')
+         let category = await fetchApi('/categorys')
 
          for (const item of items) {
             let currentCategory = category.find(cat => cat.id === item.cate_id);
