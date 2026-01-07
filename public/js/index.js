@@ -102,13 +102,13 @@ import {fetchApi, fetchApiWithId , postApi , patchApi} from './api.js'
 
            click.addEventListener('click', async (e)=>{
                 e.preventDefault();
+                let imgHtml = document.querySelector('.newF form input[type="file"]').files[0];
                 let name = document.querySelector('.newF form input[name="name"]').value
-                let img =  'pic/'+ document.querySelector('.newF form input[type="file"]').files[0].name
+                let img = imgHtml ? 'pic/'+ imgHtml.name : null
                 let cate_id = document.querySelector('.newF form select[name="categorysN"]').value
                 let size = document.querySelector('.newF form input[name="size"]').value
 
-                await handleImageUpload(document.querySelector('.newF form input[type="file"]').files[0]);
-
+                await handleImageUpload(imgHtml);
                 if (!name || !cate_id ){
                     let empty = '';
     
@@ -120,7 +120,7 @@ import {fetchApi, fetchApiWithId , postApi , patchApi} from './api.js'
                         color: 'red',
                         border: '#FAB519 5px solid',
                         // *** This is where you add your logo image path ***
-                        imageUrl: 'https://raw.githubusercontent.com/Duddy0878/skyline/main/pic/red.png', 
+                        imageUrl: 'pic/red.png', 
                         imageWidth: 200, // Set the width of your logo
                         imageHeight: 200, // Set the height of your logo
                         imageAlt: 'Custom Logo', // Alternative text for accessibility
