@@ -379,6 +379,10 @@ h2{
         transition: 200ms;
     }
 
+    .loading{
+        z-index: 4u;
+    }
+
    @media  (max-width: 1600px) {
 
         .side{
