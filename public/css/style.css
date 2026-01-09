@@ -381,8 +381,8 @@ h2{
 
     .loading{
        position: absolute;
-         top: 40%;
-            left: 35%;
+         top: 10%;
+        left: 5%;
     }
 
    @media  (max-width: 1600px) {
