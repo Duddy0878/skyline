@@ -111,6 +111,10 @@ import {fetchApi, fetchApiWithId , postApi , patchApi} from './api.js'
                 if(imgHtml.length > 0){
 
                     let fin = await handleImageUpload(imgHtml[0]);
+                    loadingOn();
+                    if(fin) {
+                        loadingOff();
+                    }
                     console.log(fin);
                 }
                 
@@ -147,11 +151,11 @@ import {fetchApi, fetchApiWithId , postApi , patchApi} from './api.js'
                     size
                 }
 
-                loadingOn();
-
+                
                 let response = await postApi('/items', data)
+                loadingOn();
                 if (response.success){
-                    loadingOff();
+                 loadingOff();
                 swal.fire({
                     title: 'Item added successfully!',
                     background: 'black',
