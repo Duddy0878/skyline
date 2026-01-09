@@ -147,8 +147,11 @@ import {fetchApi, fetchApiWithId , postApi , patchApi} from './api.js'
                     size
                 }
 
+                loadingOn();
+
                 let response = await postApi('/items', data)
                 if (response.success){
+                    loadingOff();
                 swal.fire({
                     title: 'Item added successfully!',
                     background: 'black',
@@ -464,6 +467,13 @@ import {fetchApi, fetchApiWithId , postApi , patchApi} from './api.js'
             
          }
 
+         function loadingOn(){
+             document.querySelector('.loading').style.display = 'block';
+         }
+
+         function loadingOff(){
+             document.querySelector('.loading').style.display = 'none';
+         }
 
 
 
