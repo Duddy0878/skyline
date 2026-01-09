@@ -380,7 +380,9 @@ h2{
     }
 
     .loading{
-        z-index: 4u;
+       position: absolute;
+         top: 40%;
+            left: 35%;
     }
 
    @media  (max-width: 1600px) {
