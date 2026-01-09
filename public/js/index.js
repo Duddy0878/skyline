@@ -152,29 +152,29 @@ import {fetchApi, fetchApiWithId , postApi , patchApi} from './api.js'
                 }
 
                 
-                let response = await postApi('/items', data)
+                // let response = await postApi('/items', data)
                 loadingOn();
-                if (response.success){
-                 loadingOff();
-                swal.fire({
-                    title: 'Item added successfully!',
-                    background: 'black',
-                    color: '#FAB519',
-                    border: '#FAB519 5px solid',
-                    // *** This is where you add your logo image path ***
-                    imageUrl: 'pic/Asset%203%404x.png', 
-                    imageWidth: 200, // Set the width of your logo
-                    imageHeight: 200, // Set the height of your logo
-                    imageAlt: 'Custom Logo', // Alternative text for accessibility
-                    showConfirmButton: false,
-                    timer: 2000,
-                    customClass: {
-                        popup: 'my-swal-popup'
-                    }
-                 })
-                }
-                document.querySelector('.newF form').reset()
-                loadItems()
+                // if (response.success){
+                //  loadingOff();
+                // swal.fire({
+                //     title: 'Item added successfully!',
+                //     background: 'black',
+                //     color: '#FAB519',
+                //     border: '#FAB519 5px solid',
+                //     // *** This is where you add your logo image path ***
+                //     imageUrl: 'pic/Asset%203%404x.png', 
+                //     imageWidth: 200, // Set the width of your logo
+                //     imageHeight: 200, // Set the height of your logo
+                //     imageAlt: 'Custom Logo', // Alternative text for accessibility
+                //     showConfirmButton: false,
+                //     timer: 2000,
+                //     customClass: {
+                //         popup: 'my-swal-popup'
+                //     }
+                //  })
+                // }
+                // document.querySelector('.newF form').reset()
+                // loadItems()
            })
         }
 
