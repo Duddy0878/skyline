@@ -6,12 +6,12 @@ const cors = require('cors');
 const path = require('path');
 const fs = require('fs');
 const { log } = require('console');
+const app = express();
 const http = require('http');
 const server = http.createServer(app);
 const { Server } = require('socket.io');
 const io = new Server(server);
 
-const app = express();
 app.use(express.json());
 app.use(express.static('public'));
 app.use(cors());
