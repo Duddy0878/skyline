@@ -460,14 +460,13 @@ import {fetchApi, fetchApiWithId , postApi , patchApi} from './api.js'
             // 3. Upload file to server
             const formData = new FormData();
             alert(formData);
+            console.log(formData);
             formData.append('image', file);
 
            const check = await fetch('/upload-pic', {
                 method: 'POST',
                 body: formData
             });
-
-            alert(check.status);u
 
             if (!check.ok) {
                 console.error('Image upload failed');
