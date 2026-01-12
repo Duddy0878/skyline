@@ -101,7 +101,6 @@ import {fetchApi, fetchApiWithId , postApi , patchApi} from './api.js'
         async function addItem(){
           
            let click = document.querySelector('.newF form button[type="submit"]')
-           alert('add item loaded');
            click.addEventListener('click', async (e)=>{
                 e.preventDefault();
                 let imgHtml = document.querySelector('.newF form input[type="file"]').files;
@@ -109,7 +108,6 @@ import {fetchApi, fetchApiWithId , postApi , patchApi} from './api.js'
                 let img = imgHtml.length > 0 ? 'pic/'+ imgHtml[0].name : ''
                 let cate_id = document.querySelector('.newF form select[name="categorysN"]').value
                 let size = document.querySelector('.newF form input[name="size"]').value
-                alert('Adding item: ' + name + ', Category ID: ' + cate_id + ', Size: ' + size + ', Image: ' + img );
                 if(imgHtml.length > 0){
                    
                     let fin = await handleImageUpload(imgHtml[0]);
@@ -452,6 +450,7 @@ import {fetchApi, fetchApiWithId , postApi , patchApi} from './api.js'
         async function handleImageUpload(file) {
 
             const response = await fetch('/list-pic');
+            alert(response.status);
             const files = await response.json();
 
             // 2. Check if file already exists
