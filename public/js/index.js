@@ -470,7 +470,7 @@ import {fetchApi, fetchApiWithId , postApi , patchApi} from './api.js'
 
             if (!check.ok) {
                 console.error('Image upload failed');
-                return false
+                return false;
             }
             else {
                 return true;
