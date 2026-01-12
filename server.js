@@ -28,7 +28,8 @@ const storage = multer.diskStorage({
 
 const upload = multer({
   storage: storage,
-  limits: { fileSize: 20 * 1024 * 1024 } // 20 MB
+  limits: { fileSize: 50 * 1024 * 1024 } // 50 MB
+
 });
 
 
@@ -212,7 +213,6 @@ app.post('/upload-pic', upload.single('image'), (req, res) => {
   res.json({ success: true });
   }   catch (error) { 
     res.status(500).json({ success: false, error: error.message });
-    alert(error.message);
   }
 });
 
