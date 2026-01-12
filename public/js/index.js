@@ -450,7 +450,6 @@ import {fetchApi, fetchApiWithId , postApi , patchApi} from './api.js'
         async function handleImageUpload(file) {
 
             const response = await fetch('/list-pic');
-            alert(response.status);
             const files = await response.json();
 
             // 2. Check if file already exists
@@ -466,6 +465,8 @@ import {fetchApi, fetchApiWithId , postApi , patchApi} from './api.js'
                 method: 'POST',
                 body: formData
             });
+
+            alert(check.status);u
 
             if (!check.ok) {
                 console.error('Image upload failed');
