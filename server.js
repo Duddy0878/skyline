@@ -205,13 +205,16 @@ app.get('/list-pic', (req, res) => {
 });
 
 app.post('/upload-pic', upload.single('image'), (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ success: false, message: 'No file uploaded' });
+    }
   res.json({ success: true });
+  }   catch (error) { 
+    res.status(500).json({ success: false, error: error.message });
+    alert(error.message);
+  }
 });
-
-
-
-
-  
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
