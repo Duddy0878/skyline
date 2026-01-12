@@ -111,7 +111,6 @@ import {fetchApi, fetchApiWithId , postApi , patchApi} from './api.js'
                 if(imgHtml.length > 0){
                    
                     let fin = await handleImageUpload(imgHtml[0]);
-                    alert('fin: ' + fin);
                     loadingOn();
                     if(fin) {
                         loadingOff();
@@ -459,8 +458,6 @@ import {fetchApi, fetchApiWithId , postApi , patchApi} from './api.js'
 
             // 3. Upload file to server
             const formData = new FormData();
-            alert(formData);
-            console.log(formData);
             formData.append('image', file);
 
            const check = await fetch('/upload-pic', {
@@ -470,6 +467,7 @@ import {fetchApi, fetchApiWithId , postApi , patchApi} from './api.js'
 
             if (!check.ok) {
                 console.error('Image upload failed');
+                alert('Image upload failed');
                 return false;
             }
             else {
