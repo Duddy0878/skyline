@@ -1,6 +1,7 @@
 
 import {fetchApi, fetchApiWithId , postApi , patchApi} from './api.js'
 
+
         loadItems()
         loadCategorys()
         buttonsClick()
@@ -96,6 +97,7 @@ import {fetchApi, fetchApiWithId , postApi , patchApi} from './api.js'
             })
         }
 
+
         async function addItem(){
           
            let click = document.querySelector('.newF form button[type="submit"]')
@@ -109,11 +111,13 @@ import {fetchApi, fetchApiWithId , postApi , patchApi} from './api.js'
                 let size = document.querySelector('.newF form input[name="size"]').value
 
                 if(imgHtml.length > 0){
-
+                   
                     let fin = await handleImageUpload(imgHtml[0]);
+                    alert('fin: ' + fin);
                     loadingOn();
                     if(fin) {
                         loadingOff();
+                        alert('Image uploaded successfully');
                     }
                     console.log(fin);
                 }
