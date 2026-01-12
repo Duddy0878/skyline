@@ -109,7 +109,7 @@ import {fetchApi, fetchApiWithId , postApi , patchApi} from './api.js'
                 let img = imgHtml.length > 0 ? 'pic/'+ imgHtml[0].name : ''
                 let cate_id = document.querySelector('.newF form select[name="categorysN"]').value
                 let size = document.querySelector('.newF form input[name="size"]').value
-                alert('Adding item: ' + name + ', Category ID: ' + cate_id + ', Size: ' + size + ', Image: ' + img + ')'g);
+                alert('Adding item: ' + name + ', Category ID: ' + cate_id + ', Size: ' + size + ', Image: ' + img );
                 if(imgHtml.length > 0){
                    
                     let fin = await handleImageUpload(imgHtml[0]);
