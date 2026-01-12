@@ -6,6 +6,10 @@ const cors = require('cors');
 const path = require('path');
 const fs = require('fs');
 const { log } = require('console');
+const http = require('http');
+const server = http.createServer(app);
+const { Server } = require('socket.io');
+const io = new Server(server);
 
 const app = express();
 app.use(express.json());
@@ -60,7 +64,7 @@ app.post('/items', async (req, res) => {
       [name, img, cate_id ,size]
     );
     
-    console.log('POST /items body:', req.body);
+    io.emit('item-added');
     res.status(201).json({ success: true, insertedId: result.insertId });
   } catch (error) {
     console.error('Error inserting item:', error);
@@ -217,6 +221,6 @@ app.post('/upload-pic', upload.single('image'), (req, res) => {
 });
 
 const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
-})
+});

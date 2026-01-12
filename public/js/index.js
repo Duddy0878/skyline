@@ -1,6 +1,12 @@
 
 import {fetchApi, fetchApiWithId , postApi , patchApi} from './api.js'
+import { io } from "https://cdn.socket.io/4.7.5/socket.io.esm.min.js";
+const socket = io();
 
+socket.on('item-added', () => {
+  // Reload items when notified
+  loadItems();
+});
 
         loadItems()
         loadCategorys()
