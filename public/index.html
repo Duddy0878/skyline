@@ -188,80 +188,42 @@
             </div>
 
         <div class="loading">
-                  <svg
-          width="100%"
-          height="50%"
-          viewBox="0 0 100 100"
-          xmlns="http://www.w3.org/2000/svg"
-        >
 
-          <!-- Rotating arc -->
-          <g class="spinner">
-            <circle
-              cx="50"
-              cy="50"
-              r="42"
-              fill="none"
-              stroke="#FFC107"
-              stroke-width="6"
-              stroke-linecap="round"
-              stroke-dasharray="200"
-              stroke-dashoffset="60"
-            />
-          </g>
+            <svg
+  width="100%"
+  height="100%"
+  viewBox="0 0 100 100"
+  xmlns="http://www.w3.org/2000/svg"
+>
 
-          <!-- Auto-traced logo (static, centered) -->
-          <g
-            transform="translate(50 50) scale(0.9) translate(-50 -50)"
-            fill="#FFC107"
-          >
-            <!-- Down arrow -->
-            <path d="
-              M50 30
-              L38 44
-              H46
-              V62
-              H54
-              V44
-              H62
-              Z
-            "/>
+  <!-- Rotating loading ring -->
+  <g class="spinner">
+    <circle
+      cx="50"
+      cy="50"
+      r="42"
+      fill="none"
+      stroke="#FAB519"
+      stroke-width="6"
+      stroke-linecap="round"
+      stroke-dasharray="200"
+      stroke-dashoffset="65"
+    />
+  </g>
 
-            <!-- Up arrow -->
-            <path d="
-              M50 70
-              L62 56
-              H54
-              V38
-              H46
-              V56
-              H38
-              Z
-            "/>
+  <!-- CENTER IMAGE PLACEHOLDER -->
+  <!-- Replace href with your arrow image -->
+  <image
+    href="./pic/gg.png"
+    x="28"
+    y="28"
+    width="44"
+    height="44"
+    preserveAspectRatio="xMidYMid meet"
+  />
 
-            <!-- Zig-zag connector -->
-            <path d="
-              M46 48
-              L54 52
-              L46 56
-              L54 60
-            " fill="none" stroke="#FFC107" stroke-width="3"/>
-          </g>
+</svg>
 
-          <style>
-            .spinner {
-              transform-origin: 50% 50%;
-              animation: spin 1s linear infinite;
-            }
-
-            @keyframes spin {
-              to {
-                transform: rotate(360deg);
-              }
-            }
-          </style>
-
-        </svg>
 
         </div>
 
