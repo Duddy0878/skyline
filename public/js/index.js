@@ -180,7 +180,6 @@ socket.on('item-added', () => {
                  })
                 }
                 document.querySelector('.newF form').reset()
-                loadItems()
            })
         }
 
