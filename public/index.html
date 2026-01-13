@@ -188,7 +188,81 @@
             </div>
 
         <div class="loading">
-          <video autoplay loop muted src="./pic/loading.mp4"></video>
+                  <svg
+          width="100"
+          height="100"
+          viewBox="0 0 100 100"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+
+          <!-- Rotating arc -->
+          <g class="spinner">
+            <circle
+              cx="50"
+              cy="50"
+              r="42"
+              fill="none"
+              stroke="#FFC107"
+              stroke-width="6"
+              stroke-linecap="round"
+              stroke-dasharray="200"
+              stroke-dashoffset="60"
+            />
+          </g>
+
+          <!-- Auto-traced logo (static, centered) -->
+          <g
+            transform="translate(50 50) scale(0.9) translate(-50 -50)"
+            fill="#FFC107"
+          >
+            <!-- Down arrow -->
+            <path d="
+              M50 30
+              L38 44
+              H46
+              V62
+              H54
+              V44
+              H62
+              Z
+            "/>
+
+            <!-- Up arrow -->
+            <path d="
+              M50 70
+              L62 56
+              H54
+              V38
+              H46
+              V56
+              H38
+              Z
+            "/>
+
+            <!-- Zig-zag connector -->
+            <path d="
+              M46 48
+              L54 52
+              L46 56
+              L54 60
+            " fill="none" stroke="#FFC107" stroke-width="3"/>
+          </g>
+
+          <style>
+            .spinner {
+              transform-origin: 50% 50%;
+              animation: spin 1s linear infinite;
+            }
+
+            @keyframes spin {
+              to {
+                transform: rotate(360deg);
+              }
+            }
+          </style>
+
+        </svg>
+
         </div>
 
             
