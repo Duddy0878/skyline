@@ -381,6 +381,7 @@ h2{
 
     .loading{
        position: absolute;
+       background: green;
         top: 50%;
         left: 50%;
         transform: translateY(-50%) translateX(-50%);
