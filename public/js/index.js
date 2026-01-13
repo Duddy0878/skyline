@@ -116,10 +116,10 @@ socket.on('item-added', () => {
                 let size = document.querySelector('.newF form input[name="size"]').value
                 if(imgHtml.length > 0){
                    
-                    let fin = await handleImageUpload(imgHtml[0]);
                     loadingOn();
+                    let fin = await handleImageUpload(imgHtml[0]);
                     if(fin) {
-                        loadingOff();
+                    loadingOff();
                     }
                     console.log(fin);
                 }
