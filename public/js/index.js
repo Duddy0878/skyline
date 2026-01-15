@@ -199,7 +199,7 @@ socket.on('item-added', () => {
             let hoist = 0
             let whisperFlex = 0
             
-            let governer = Math.round(((totalTravel * 2) - ropeDrop) / 12)
+            let governer = Math.round(((pit + travel + overhead + 60)* 2 ) / 12)
 
             if(ropingType === '1:1'){
                 if(doubleWrap){
