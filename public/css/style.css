@@ -75,10 +75,6 @@ h2{
     box-sizing: border-box;
 }
 
-.container .name{
-
-}
-
 .container p{
     font-size: 15px;
     text-align: center;
@@ -114,7 +110,8 @@ h2{
 }
 
 .side .buttons button{
-    padding: 5%;
+    padding-top: 5%;
+    padding-bottom: 5%;
     width: 200px;
     border: #FAB519 2px solid;
     border-radius: 5%;
@@ -136,7 +133,7 @@ h2{
     background: black;
     height: 78vh;
     position: absolute;
-   top: 125px;
+    top: 125px;
     width: 99%;
 }
 
@@ -218,7 +215,7 @@ h2{
        border-radius: 5%;
        color: #FAB519;
        width: 30%;
-       margin-top: 15%;
+       margin-top: 7%;
     }
 
     .addBTN{
