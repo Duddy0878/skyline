@@ -103,6 +103,15 @@ socket.on('item-added', () => {
             })
         }
 
+        function closeBtns(closeHtml){
+            closeHtml.addEventListener('click', () => {
+                    document.querySelector(`.forms`).classList.remove('active')
+                    status = false;
+                    document.querySelector('.newF form').reset()
+                    return
+            });
+        } 
+
 
         async function addItem(){
           
@@ -182,6 +191,7 @@ socket.on('item-added', () => {
                 document.querySelector('.newF form').reset()
            })
         }
+        closeBtns(document.querySelector('.closeNewF'))
 
         function calculateRopeLength(){
             let ropingType = document.querySelector('.ropeForm select').value
@@ -199,7 +209,7 @@ socket.on('item-added', () => {
             let hoist = 0
             let whisperFlex = 0
             
-            let governer = Math.round(((pit + travel + overhead)* 2) / 12)
+            let governer = Math.round((((pit + travel + overhead)* 2) + 60) / 12)
 
             if(ropingType === '1:1'){
                 if(doubleWrap){

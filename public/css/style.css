@@ -159,6 +159,7 @@ h2{
   .newF{
     margin: 5%;
     display: none;
+    position: relative;
   }
   
   .newF form {
@@ -206,6 +207,18 @@ h2{
     .stores input[type="number"]{
         width: 50%;
         padding: 2%;
+    }
+
+    .closeNewF{
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        cursor: pointer;
+    }
+
+    .closeNewF:hover{
+        transform: scale(1.2);
+        transition: 200ms;
     }
 
     .newF button[type="submit"], .newF button[type="reset"]{
