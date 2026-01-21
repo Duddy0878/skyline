@@ -13,7 +13,7 @@ const { Server } = require('socket.io');
 const io = new Server(server);
 
 app.use(express.json());
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use('/pic', express.static(path.join(__dirname, 'pic')));
 app.use(cors());
 app.use(express.json({ limit: '20mb' })); // or higher if needed
