@@ -28,6 +28,11 @@ async function loadItems() {
         container.className = 'container';
         container.id = item.id;
 
+        let pic = document.createElement('div');
+        pic.className = 'pic';
+        pic.innerHTML = `<img src="/${item.img}" alt="" onerror="this.src='/pic/Asset 3@4x.png'">`
+        container.appendChild(pic);
+
         let name = document.createElement('div');
         name.className = 'name';
         name.innerHTML = `<p>${item.name}</p>`;
