@@ -80,3 +80,10 @@ button {
 button:hover {
     background-color: #e0a800;
 }
+
+    .categoryHeader{
+        width: 90%;
+        border-bottom: #FAB519 2px solid;
+        margin: 20px 0px 10px 20px;
+        color: #FAB519;
+    }
