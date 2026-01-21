@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./logo/gmail profile.jpg">
+    <title>Skyline elevators</title>
+
+    <!-- https://raw.githubusercontent.com/Duddy0878/skyline/main/pic/cover%20for%20cunduit.jpg-->
+    <link rel="stylesheet" href="../css/admin.css">
+
+</head>
+<body>
+
+    <div class="items">
+   
+    </div>
+
+    <div class="side">
+      <div>
+       <div class="buttons active">
+                <button id="newF">New Item</button>
+                <button id="newOrder">New Order</button>
+                <button id="more">More</button>
+                <button id="editItems">Edit Items</button>
+                <button id="addInventory">Add Inventory</button>
+                <button id="orderHistory">Order History</button>
+                <button id="ropeForm">Measure Rope</button>
+                <button id="falseCar">False Car</button>
+                <button>more</button>
+                <button>more</button>
+                <button>more</button>
+                <button>more</button>
+                <button>more</button>
+                <button>more</button>
+                <button>more</button>
+                <button>more</button>
+                <button>more</button>
+                <button>more</button>
+                <button>more</button>
+                <button>more</button>
+                <button>more</button>
+       </div>
+
+          <div class="forms">  
+
+            <div class="newF">
+                <form action="" enctype="multipart/form-data" method="post">
+                    <h2>New Item</h2>
+                    <div class="closeNewF">
+                    <svg  xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FAB519"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
+                    </div>
+                    <div class="info">
+                        <div class="">
+                              <label for="">Item Name</label>
+                            <input type="text" name="name" placeholder="Item Name">
+                        </div>  
+                        <div class="">
+                              <label for="">Category</label>
+                            <select name="categorysN" id="category">
+                                <option value="" disabled selected> Category</option>
+                            </select>
+                        </div>  
+                        <div class="">
+                            <label for="">Img</label>
+                            <input type="file" id="imageInput" name="image" accept="image/*">
+                        </div>
+                        <div class="">
+                              <label for="">Size</label>
+                            <input type="text" name="size" placeholder="size">
+                        </div>   
+                        <div class="">
+                                <label for="">shop</label>
+                                <select name="shop" id="shop">
+                                    <option value="" disabled selected> Shop</option>
+                                    <option value="yes">Yes</option>
+                                    <option value="nto">Need To Order</option>
+                                    <option value="no">no</option>
+                                </select>
+                        </div>
+                        <div class=""> 
+                            Quantity<input type="number" placeholder="0">
+                        </div>
+                    </div>
+                        <h2>Prices</h2>
+                    <div class="stores">
+
+                          <div class="mega">
+                            Mega: <input type="number" placeholder="price">
+                          </div>
+                          <div class="wurtec">
+                            Wurtec: <input type="number" placeholder="price">
+                          </div>
+                          <div class="truimph">
+                            Truimph: <input type="number" placeholder="price">
+                          </div>
+                          <div class="draca">
+                            Draca: <input type="number" placeholder="price">
+                          </div>
+                    </div>
+                    <div class="addBTN">
+                    <button type="reset">Cancel</button>
+                    <button type="submit">Add Item</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="ropeForm">
+                <select name="" id="">
+                    <option value="1:1">1:1</option>
+                    <option value="2:1">2:1</option>
+                </select>
+                <input type="text" placeholder="pit">
+                <input type="text" placeholder="travel">
+                <input type="text" placeholder="overhead">
+                <input type="text" placeholder="rope Drop">
+                <div class="">
+                  <label for="">Half Way Box ?</label>
+                  <input name="halfWayBox" type="checkbox">
+                </div>
+                <div class="">
+                  <label for="">Double Wrap ?</label>
+                  <input name="doubleWrap" type="checkbox">
+                </div>
+
+                <button type="submit">Calculate</button>
+
+            </div>
+
+            <div class="ropeOutput">
+              <h1>Rope Results</h1>
+              <h4>Pls Review</h4>
+              <div class="resultsContainer">
+
+                <div class="">
+                  <label for="">Hoist Rope:</label>
+                  <input type="text" name="hoistRope" placeholder="678.9 ft">
+                </div>
+                <div class="">
+                  <label for="">Governer Rope:</label>
+                  <input type="text" name="governerRope" placeholder="678.9 ft">
+                </div>
+                <div class="">
+                  <label for="">whisper Flex:</label>
+                  <input type="text" name="whisperFlex" placeholder="678.9 ft">
+                </div>
+                <div class="">
+                  <label for="">travel cable:</label>
+                  <input type="text" name="travelCable" placeholder="678.9 ft">
+                </div>
+                <div class="">
+                  <label for="">travel multi:</label>
+                  <input type="text" name="travelMulti" placeholder="678.9 ft">
+                </div>
+                <div class="">
+                  <label for="">hoistway:</label>
+                  <input type="text" name="hoistway" placeholder="678.9 ft">
+                </div>
+
+                <div class="">
+                  <label for="">Job Site:</label>
+                  <select name="" id="jobsRope">
+                        
+                  </select>
+                </div>
+                <div class="">
+                  <label for="">Car #:</label>
+                  <input type="text" name="car" placeholder="">
+                </div>
+
+                <button id="placeOrder">
+                  place order
+                </button>
+
+                <button id="saveFLater">
+                  save for later
+                </button>
+
+              </div>
+
+            </div>
+
+            <div class="addInventory">
+              <h1>Click On An Item To <br>Add Quantity</h1>
+            </div>
+
+            <div class="newOrder">
+                          <svg
+            width="100%"
+            height="100%"
+            viewBox="0 0 100 100"
+            xmlns="http://www.w3.org/2000/svg"
+            >
+            
+            <!-- Rotating loading ring -->
+            <g class="spinner">
+              <circle
+                cx="50"
+                cy="50"
+                r="42"
+                fill="none"
+                stroke="#FAB519"
+                stroke-width="4"
+                stroke-linecap="round"
+                stroke-dasharray="200"
+                stroke-dashoffset="65"
+              />
+            </g>
+            
+            <!-- CENTER IMAGE PLACEHOLDER -->
+            <!-- Replace href with your arrow image -->
+            <image
+              href="./pic/gg.png"
+              x="28"
+              y="28"
+              width="44"
+              height="44"
+              preserveAspectRatio="xMidYMid meet"
+            />
+            
+            </svg>         
+            </div>
+
+            <div class="orderHistory">
+
+            </div>
+            
+            <div class="loading">
+              
+              <svg
+    width="100%"
+    height="100%"
+    viewBox="0 0 100 100"
+    xmlns="http://www.w3.org/2000/svg"
+    >
+    
+    <!-- Rotating loading ring -->
+    <g class="spinner">
+      <circle
+        cx="50"
+        cy="50"
+        r="42"
+        fill="none"
+        stroke="#FAB519"
+        stroke-width="6"
+        stroke-linecap="round"
+        stroke-dasharray="200"
+        stroke-dashoffset="65"
+      />
+    </g>
+    
+    <!-- CENTER IMAGE PLACEHOLDER -->
+    <!-- Replace href with your arrow image -->
+    <image
+      href="./pic/gg.png"
+      x="28"
+      y="28"
+      width="44"
+      height="44"
+      preserveAspectRatio="xMidYMid meet"
+    />
+    
+    </svg>
+
+
+        </div>
+
+            
+            
+            
+          </div>
+        </div>
+
+    </div>
+
+    <script type="module" src="../js/admin.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
