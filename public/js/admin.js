@@ -42,7 +42,7 @@ socket.on('item-added', () => {
 
             let pic = document.createElement('div')
             pic.className = 'pic'
-            pic.innerHTML = `<img src="${item.img}" alt="" onerror="this.src='./pic/Asset 3@4x.png'">`
+            pic.innerHTML = `<img src="/${item.img}" alt="" onerror="this.src='./pic/Asset 3@4x.png'">`
             container.appendChild(pic)
 
             let name = document.createElement('div')
