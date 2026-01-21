@@ -120,7 +120,7 @@ socket.on('item-added', () => {
                 e.preventDefault();
                 let imgHtml = document.querySelector('.newF form input[type="file"]').files;
                 let name = document.querySelector('.newF form input[name="name"]').value
-                let img = imgHtml.length > 0 ? 'pic/'+ imgHtml[0].name : ''
+                let img = imgHtml.length > 0 ? '/pic/'+ imgHtml[0].name : ''
                 let cate_id = document.querySelector('.newF form select[name="categorysN"]').value
                 let size = document.querySelector('.newF form input[name="size"]').value
                 if(imgHtml.length > 0){
@@ -144,7 +144,7 @@ socket.on('item-added', () => {
                         color: 'red',
                         border: '#FAB519 5px solid',
                         // *** This is where you add your logo image path ***
-                        imageUrl: 'pic/red.png', 
+                        imageUrl: '/pic/red.png', 
                         imageWidth: 200, // Set the width of your logo
                         imageHeight: 200, // Set the height of your logo
                         imageAlt: 'Custom Logo', // Alternative text for accessibility
@@ -177,7 +177,7 @@ socket.on('item-added', () => {
                     color: '#FAB519',
                     border: '#FAB519 5px solid',
                     // *** This is where you add your logo image path ***
-                    imageUrl: 'pic/Asset%203%404x.png', 
+                    imageUrl: '/pic/Asset%203%404x.png', 
                     imageWidth: 200, // Set the width of your logo
                     imageHeight: 200, // Set the height of your logo
                     imageAlt: 'Custom Logo', // Alternative text for accessibility
@@ -281,7 +281,7 @@ socket.on('item-added', () => {
                             color: 'red',
                             border: '#FAB519 5px solid',
                             // *** This is where you add your logo image path ***
-                            imageUrl: 'pic/red.png', 
+                            imageUrl: '/pic/red.png', 
                             imageWidth: 200, // Set the width of your logo
                             imageHeight: 200, // Set the height of your logo
                             imageAlt: 'Custom Logo', // Alternative text for accessibility
@@ -318,7 +318,7 @@ socket.on('item-added', () => {
                     color: '#FAB519',
                     border: '#FAB519 5px solid',
                     // *** This is where you add your logo image path ***
-                    imageUrl: 'pic/Asset%203%404x.png', 
+                    imageUrl: '/pic/Asset%203%404x.png', 
                     imageWidth: 200, // Set the width of your logo
                     imageHeight: 200, // Set the height of your logo
                     imageAlt: 'Custom Logo', // Alternative text for accessibility
@@ -427,7 +427,7 @@ socket.on('item-added', () => {
             
             let img = document.createElement('div')
             img.style.justifyContent = 'center'
-            img.innerHTML = `<img src="${item.img}" alt="" style="width:100%;height:300px;object-fit:contain;" onerror="this.src='pic/Asset%203%404x.png'">`
+            img.innerHTML = `<img src="${item.img}" alt="" style="width:100%;height:300px;object-fit:contain;" onerror="this.src='/pic/Asset%203%404x.png'">`
             div.appendChild(img)
             
             let name = document.createElement('div')

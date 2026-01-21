@@ -1,0 +1,86 @@
+
+
+body {
+    background: black;
+    color: #FAB519;
+    font-family: "PT Serif", serif;
+}
+
+.top{
+    width: 100%;
+    align-items: center;
+    height: 3%;
+    background: black;
+    box-shadow: 0px 10px 10px -10px #FAB519;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+}
+
+.logo{
+    padding: 1%;
+}
+
+.slogan{
+    text-align: center;
+    font-size: 10px;
+    color: #FAB519;
+    font-weight: 500;
+}
+
+.admin{
+    text-align: right;
+    padding: 1%;
+}
+
+.admin a{
+    text-decoration: none;
+    color: #FAB519;
+}
+
+.top img{
+    width: 100%;
+    opacity: 0.9;
+}
+
+
+.select{
+    padding: 4%;
+    font-size: 20px;
+    background: transparent;
+    border-radius: 2%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15%;
+    justify-self: center;
+    justify-content: center;
+}
+
+.select h1{
+    font-size: 25px;
+    text-align: center;
+    margin-bottom: 5%;
+}
+
+.select > div{
+   text-align: center;
+   border: #FAB519 2px solid;
+   width: 80%;
+   margin-left: 10px;
+   border-radius: 10px;
+   padding: 5%;
+   box-shadow: #FAB519 0px 0px 10px;
+}
+
+.select > div:hover{
+    background: #FAB519;
+    color: black;
+    cursor: pointer;
+    transition: 200ms;
+}
+
+@media screen and (max-width: 768px) {
+    .slogan{
+        font-size: 7px;
+    }
+}
+    
