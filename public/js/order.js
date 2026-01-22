@@ -6,17 +6,26 @@ socket.on("item-added", () => {
     
 });
 
+let typeOf = new URLSearchParams(window.location.search).get('type');
+
 async function loadItems() {
     let items = await fetchApi('/items');
 
     let div = document.querySelector('.items');
     var cateCheck = ''
-         items.sort((a, b) => a.cate_id - b.cate_id);
+
+    items.sort((a, b) => a.cate_id - b.cate_id);
 
     let category = await fetchApi('/categorys');
 
     for( let item of items ){
         let currentCategory = category.find(cate => cate.id === item.cate_id);
+        if(typeOf === 'rails'){
+            if(currentCategory.id > 6) return;
+        }
+        if(typeOf === 'ropes'){
+            if(currentCategory.id < 7) return;
+        }
         if(cateCheck != currentCategory.name){
                 cateCheck = currentCategory.name;
                 let categoryHeader = document.createElement('div')

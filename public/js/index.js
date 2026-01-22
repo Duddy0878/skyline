@@ -1,3 +1,3 @@
 document.querySelector('.select > div').addEventListener('click', () => {
-    window.location.href = "./html/order.html";
+    window.location.href = "./html/order.html?type=rails";
 });
