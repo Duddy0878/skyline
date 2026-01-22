@@ -24,7 +24,7 @@ async function loadItems() {
             if(currentCategory.id > 6) return;
         }
         if(typeOf === 'ropes'){
-            if(currentCategory.id < 7) return;
+            if(currentCategory.id < 7) continue;
         }
         if(cateCheck != currentCategory.name){
                 cateCheck = currentCategory.name;
