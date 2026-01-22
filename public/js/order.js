@@ -35,7 +35,7 @@ socket.on("item-added", () => {
 
     
     for (let i = 0; i < grouped.length; i++) {
-       if(grouped[i] === 1 && typeOf === 'rails'){
+       if(grouped[i] === 6d && typeOf === 'rails'){
         createItemCards(grouped[i]);
        }
 
