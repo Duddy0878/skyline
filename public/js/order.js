@@ -14,25 +14,39 @@ async function loadItems() {
     let div = document.querySelector('.items');
     var cateCheck = ''
 
-    items.sort((a, b) => a.cate_id - b.cate_id);
 
     let category = await fetchApi('/categorys');
 
-    for( let item of items ){
-        let currentCategory = category.find(cate => cate.id === item.cate_id);
-        if(typeOf === 'rails'){
-            if(currentCategory.id > 6) return;
-        }
-        if(typeOf === 'ropes'){
-            if(currentCategory.id < 7) continue;
-        }
-        if(cateCheck != currentCategory.name){
-                cateCheck = currentCategory.name;
-                let categoryHeader = document.createElement('div')
-                categoryHeader.className = 'categoryHeader'
-                categoryHeader.innerHTML = `<h2> ${upperCaseFirstLetter(currentCategory.name)} </h2>`
-                div.appendChild(categoryHeader)
-        }
+    const grouped = {};
+    items.forEach(item => {
+    if (!grouped[item.cate_id]) grouped[item.cate_id] = [];
+    grouped[item.cate_id].push(item);
+    });
+
+    // Sort each category by order
+    for (const cat in grouped) {
+    grouped[cat].sort((a, b) => a.order - b.order);
+    }
+
+     for (const cat of grouped) {
+       if(cat === 1 && typeOf === 'rails'){
+        createItemCards(grouped[cat]);
+       }
+
+        
+     }
+    
+    
+}
+
+loadItems();
+
+function upperCaseFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+function createItemCards(item){
+
+    for(let it of item){
 
         let container = document.createElement('div');
         container.className = 'container';
@@ -53,14 +67,6 @@ async function loadItems() {
         quantity.innerHTML = `<input type="number" placeholder="0"></input>`;
         container.appendChild(quantity);
         div.appendChild(container);
-
     }
 
-
 }
-
-loadItems();
-
-        function upperCaseFirstLetter(string) {
-            return string.charAt(0).toUpperCase() + string.slice(1);
-        }
