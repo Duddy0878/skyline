@@ -32,15 +32,11 @@ socket.on("item-added", () => {
 
     console.log(grouped);
     
-
-    
-    for (let i = 0; i < grouped.length; i++) {
-       if(grouped[i] === 6 && typeOf === 'rails'){
-        createItemCards(grouped[i]);
-       }
-
-        
+     if(typeOf === 'rails'){
+         createItemCards(grouped[1]); // genral supplies
+         createItemCards(grouped[2]); // Accessories
      }
+    
     
     
 }
