@@ -29,8 +29,8 @@ async function loadItems() {
     }
 
      for (let i = 0; i < grouped.length; i++) {
-       if(cat === 1 && typeOf === 'rails'){
-        createItemCards(grouped[cat]);
+       if(grouped[1] && typeOf === 'rails'){
+        createItemCards(grouped[i]);
        }
 
         
