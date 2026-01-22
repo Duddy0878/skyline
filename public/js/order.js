@@ -28,7 +28,7 @@ async function loadItems() {
     grouped[cat].sort((a, b) => a.order - b.order);
     }
 
-     for (const cat of grouped) {
+     for (let i = 0; i < grouped.length; i++) {
        if(cat === 1 && typeOf === 'rails'){
         createItemCards(grouped[cat]);
        }
