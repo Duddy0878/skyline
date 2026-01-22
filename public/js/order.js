@@ -11,10 +11,11 @@ let typeOf = new URLSearchParams(window.location.search).get('type');
 async function loadItems() {
     let items = await fetchApi('/items');
 
+console.log(items);
+
+
     let div = document.querySelector('.items');
     var cateCheck = ''
-
-
     let category = await fetchApi('/categorys');
 
     const grouped = {};
@@ -28,9 +29,13 @@ async function loadItems() {
     grouped[cat].sort((a, b) => a.order - b.order);
     }
 
-     for (let i = 0; i < grouped.length; i++) {
+    console.log(grouped);
+    
+
+    
+    for (let i = 0; i < grouped.length; i++) {
        if(grouped[1] && typeOf === 'rails'){
-        createItemCards(grouped[i]);
+        createItemCards(grouped[i+1]);
        }
 
         
