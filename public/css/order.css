@@ -87,3 +87,7 @@ button:hover {
         margin: 20px 0px 10px 20px;
         color: #FAB519;
     }
+
+    .hide{
+        display: none;
+    }

@@ -40,6 +40,8 @@ socket.on("item-added", () => {
          createItemCards(grouped[6],'order'); // rails
         //  createItemCards(grouped[2]); // Accessories
      }
+
+     document.querySelector('.hide').style.display = 'block';
     
     
     
