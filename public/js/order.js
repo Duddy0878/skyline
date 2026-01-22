@@ -34,7 +34,9 @@ socket.on("item-added", () => {
     
      if(typeOf === 'rails'){
         createItemCards(grouped[1],'abc'); // general supplies
-        createItemCards(grouped[3],'abc'); // hardware
+        createItemCards(grouped[2],'none'); // wood
+        createItemCards(grouped[3],'abc'); // safety
+        createItemCards(grouped[4],'size'); // fasteners
          createItemCards(grouped[6],'order'); // rails
         //  createItemCards(grouped[2]); // Accessories
      }
@@ -61,10 +63,10 @@ function createItemCards(item,order){
 
     let categoryFind = category.find(cat => cat.id === item[0].cate_id);
 
-        let categoryHeader = document.createElement('div')
-        categoryHeader.className = 'categoryHeader'
-        categoryHeader.innerHTML = `<h2> ${upperCaseFirstLetter(categoryFind.name)} </h2>`
-        div.appendChild(categoryHeader)
+    let categoryHeader = document.createElement('div')
+    categoryHeader.className = 'categoryHeader'
+    categoryHeader.innerHTML = `<h2> ${upperCaseFirstLetter(categoryFind.name)} </h2>`
+    div.appendChild(categoryHeader)
             
 
     
