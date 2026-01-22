@@ -6,15 +6,16 @@ socket.on("item-added", () => {
     
 });
 
-let typeOf = new URLSearchParams(window.location.search).get('type');
+    let typeOf = new URLSearchParams(window.location.search).get('type');
 
-async function loadItems() {
+    async function loadItems() {
     let items = await fetchApi('/items');
+    // createItemCards(items);
 
-console.log(items);
+    console.log(items);
 
 
-    let div = document.querySelector('.items');
+
     var cateCheck = ''
     let category = await fetchApi('/categorys');
 
@@ -34,8 +35,8 @@ console.log(items);
 
     
     for (let i = 0; i < grouped.length; i++) {
-       if(grouped[1] && typeOf === 'rails'){
-        createItemCards(grouped[i+1]);
+       if(grouped[i] === 1 && typeOf === 'rails'){
+        createItemCards(grouped[i]);
        }
 
         
@@ -50,21 +51,22 @@ function upperCaseFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 function createItemCards(item){
+    let div = document.querySelector('.items');
 
     for(let it of item){
 
         let container = document.createElement('div');
         container.className = 'container';
-        container.id = item.id;
+        container.id = it.id;
 
         let pic = document.createElement('div');
         pic.className = 'pic';
-        pic.innerHTML = `<img src="/${item.img}" alt="" onerror="this.src='/pic/Asset 3@4x.png'">`
+        pic.innerHTML = `<img src="/${it.img}" alt="" onerror="this.src='/pic/Asset 3@4x.png'">`
         container.appendChild(pic);
 
         let name = document.createElement('div');
         name.className = 'name';
-        name.innerHTML = `<p>${item.name}</p>`;
+        name.innerHTML = `<p>${it.name}</p>`;
         container.appendChild(name);
 
         let quantity = document.createElement('div');
