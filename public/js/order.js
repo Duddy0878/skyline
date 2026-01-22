@@ -54,9 +54,9 @@ function createItemCards(item,order){
     if(order === 'order'){
         item.sort((a, b) => a.order - b.order);
     }
-    if(order === 'abc'){
-        item.sort((a, b) => a.name.localeCompare(b.name));
-    }
+    // if(order === 'abc'){
+    //     item.sort((a, b) => a.name.localeCompare(b.name));
+    // }
     let div = document.querySelector('.items');
 
     let categoryFind = category.find(cat => cat.id === item[0].cate_id);
