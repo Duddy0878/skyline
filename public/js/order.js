@@ -11,6 +11,7 @@ async function loadItems() {
 
     let div = document.querySelector('.items');
     var cateCheck = ''
+         items.sort((a, b) => a.cate_id - b.cate_id);
 
     let category = await fetchApi('/categorys');
 
