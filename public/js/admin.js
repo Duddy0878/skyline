@@ -253,7 +253,7 @@ socket.on('item-added', () => {
         document.querySelector('.ropeForm button[type="submit"]').addEventListener('click', async (e)=>{
             e.preventDefault();
 
-             let jobs = await fetchApi('jobs')
+             let jobs = await fetchApi('/jobs')
             inputSelect(jobs, document.querySelector('.ropeOutput #jobsRope'),'Jobs')
 
 
