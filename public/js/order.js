@@ -33,8 +33,8 @@ socket.on("item-added", () => {
     console.log(grouped);
     
      if(typeOf === 'rails'){
-         createItemCards(grouped[1]); // genral supplies
-         createItemCards(grouped[2]); // Accessories
+         createItemCards(grouped[6]); // genral supplies
+        //  createItemCards(grouped[2]); // Accessories
      }
     
     
@@ -46,7 +46,10 @@ loadItems();
 function upperCaseFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
-function createItemCards(item){
+function createItemCards(item,order){
+    if(order === 'order'){
+        item.sort((a, b) => a.order - b.order);
+    }
     let div = document.querySelector('.items');
 
     for(let it of item){
