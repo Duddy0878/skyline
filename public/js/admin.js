@@ -43,7 +43,7 @@ socket.on('item-added', () => {
             let pic = document.createElement('div')
             pic.className = 'pic'
             pic.innerHTML = `<img src="/${item.img}" alt="" onerror="this.src='/pic/Asset 3@4x.png'">`
-            container.appendChild(pic)
+            container.appendChild(pic)                                                                                                                                                                                                                                                                                                                                                 
 
             let name = document.createElement('div')
             name.className = 'name'
@@ -120,7 +120,7 @@ socket.on('item-added', () => {
                 e.preventDefault();
                 let imgHtml = document.querySelector('.newF form input[type="file"]').files;
                 let name = document.querySelector('.newF form input[name="name"]').value
-                let img = imgHtml.length > 0 ? '/pic/'+ imgHtml[0].name : ''
+                let img = imgHtml.length > 0 ? 'pic/'+ imgHtml[0].name : ''
                 let cate_id = document.querySelector('.newF form select[name="categorysN"]').value
                 let size = document.querySelector('.newF form input[name="size"]').value
                 if(imgHtml.length > 0){
