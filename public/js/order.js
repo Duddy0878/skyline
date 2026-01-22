@@ -40,6 +40,14 @@ socket.on("item-added", () => {
          createItemCards(grouped[6],'order'); // rails
         //  createItemCards(grouped[2]); // Accessories
      }
+     if(typeOf === 'ropes'){
+        createItemCards(grouped[7],'abc'); // ropes
+        createItemCards(grouped[8],'abc'); // electrical  
+        createItemCards(grouped[9],'abc'); // hardware
+        createItemCards(grouped[200],'abc'); // accessories      
+        createItemCards(grouped[300],'abc'); // safety
+
+     }
 
      document.querySelector('.hide').style.display = 'block';
     
