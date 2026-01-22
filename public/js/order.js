@@ -7,6 +7,7 @@ socket.on("item-added", () => {
 });
 
     let typeOf = new URLSearchParams(window.location.search).get('type');
+    let category = await fetchApi('/categorys');
 
     async function loadItems() {
     let items = await fetchApi('/items');
@@ -17,7 +18,6 @@ socket.on("item-added", () => {
 
 
     var cateCheck = ''
-    let category = await fetchApi('/categorys');
 
     const grouped = {};
     items.forEach(item => {
@@ -33,7 +33,9 @@ socket.on("item-added", () => {
     console.log(grouped);
     
      if(typeOf === 'rails'){
-         createItemCards(grouped[6]); // genral supplies
+        createItemCards(grouped[1],'abc'); // general supplies
+        createItemCards(grouped[3],'abc'); // hardware
+         createItemCards(grouped[6],'order'); // rails
         //  createItemCards(grouped[2]); // Accessories
      }
     
@@ -47,10 +49,25 @@ function upperCaseFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 function createItemCards(item,order){
+
+
     if(order === 'order'){
         item.sort((a, b) => a.order - b.order);
     }
+    if(order === 'abc'){
+        item.sort((a, b) => a.name.localeCompare(b.name));
+    }
     let div = document.querySelector('.items');
+
+    let categoryFind = category.find(cat => cat.id === item[0].cate_id);
+
+        let categoryHeader = document.createElement('div')
+        categoryHeader.className = 'categoryHeader'
+        categoryHeader.innerHTML = `<h2> ${upperCaseFirstLetter(categoryFind.name)} </h2>`
+        div.appendChild(categoryHeader)
+            
+
+    
 
     for(let it of item){
 
