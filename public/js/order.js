@@ -57,6 +57,102 @@ socket.on("item-added", () => {
 
 loadItems();
 
+let jobs = await fetchApi('/jobs');
+for(let job of jobs){
+    let option = document.createElement('option');
+    option.value = job.id;
+    option.innerText = job.address;
+    document.querySelector('#jobsiteSelect').appendChild(option);
+}
+
+document.querySelector('button').addEventListener('click', async () => {
+
+    let orderItems = [];
+    let itemElements = document.querySelectorAll('.container, .containerB, .li');
+    itemElements.forEach(container => {
+        let itemId = container.id;
+        let quantityInput = container.querySelector('input');
+        let quantity = parseInt(quantityInput.value);
+        if (quantity > 0) {
+            orderItems.push({ item_id: itemId, quantity: quantity });
+        }
+    });
+
+    let jobsiteSelect = document.querySelector('#jobsiteSelect');
+    let jobSite = jobsiteSelect.value;
+    let carNumber = document.querySelector('.car input').value;
+    if(orderItems.length === 0){
+                    swal.fire({
+                        title: `No Item Was Selected!`,
+                        background: 'black',
+                        color: 'red',
+                        border: '#FAB519 5px solid',
+                        // *** This is where you add your logo image path ***
+                        imageUrl: '/pic/red.png', 
+                        imageWidth: 200, // Set the width of your logo
+                        imageHeight: 200, // Set the height of your logo
+                        imageAlt: 'Custom Logo', // Alternative text for accessibility
+                        confirmButtonText: 'OK',
+                        confirmButtonColor: 'red',
+                        customClass: {
+                            popup: 'my-swal-popup'
+                        }                        
+                    })
+        return;
+    }
+    if(!jobSite || !carNumber){
+                    swal.fire({
+                        title: `Please fill in ${!jobSite ? 'Job Site' : 'Car Number'}!`,
+                        background: 'black',
+                        color: 'red',
+                        border: '#FAB519 5px solid',
+                        // *** This is where you add your logo image path ***
+                        imageUrl: '/pic/red.png', 
+                        imageWidth: 200, // Set the width of your logo
+                        imageHeight: 200, // Set the height of your logo
+                        imageAlt: 'Custom Logo', // Alternative text for accessibility
+                        confirmButtonText: 'OK',
+                        confirmButtonColor: 'red',
+                        customClass: {
+                            popup: 'my-swal-popup'
+                        }                        
+                    })
+        return;
+    }
+
+    let sendOrder = await postApi('/orders', {job_id: jobSite, car_number: carNumber, status: 'pending'})
+    let orderId = sendOrder.insertedId;
+    if(orderId){
+        for(let orderItem of orderItems){
+            orderItem.order_id = orderId;
+        }
+        let sendOrderItems = await postApi('/order-items', {items: orderItems});
+        if(sendOrderItems.success){
+            swal.fire({
+                title: 'Order placed successfully!',
+                background: 'black',
+                color: '#FAB519',
+                border: '#FAB519 5px solid',
+                imageUrl: '/pic/Asset%203%404x.png', 
+                imageWidth: 200,
+                imageHeight: 200,
+                imageAlt: 'Success Logo',
+                timer: 3000,
+                showConfirmButton: false,
+                customClass: {
+                    popup: 'my-swal-popup'
+                }                        
+            });
+        }
+        
+
+    }
+
+    
+     
+});
+
+
 function upperCaseFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
@@ -100,7 +196,7 @@ function createItemCards(itemB,order){
 
         let name = document.createElement('div');
         name.className = 'name';
-        name.innerHTML = `<p style="font-size: 25px">${kind}</p>`;
+        name.innerHTML = `<p style="font-size: 25px">${upperCaseFirstLetter(kind)}</p>`;
         let img = document.createElement('div');
         img.className = 'pic';
         img.innerHTML = `<img src="/${allKinds[kind][0].img}" alt="" onerror="this.src='/pic/Asset 3@4x.png'">`

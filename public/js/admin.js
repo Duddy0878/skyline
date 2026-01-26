@@ -409,7 +409,7 @@ socket.on('item-added', () => {
 
         }
 
-        function newOrder(){
+        function orders(){
 
         }
 

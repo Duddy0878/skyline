@@ -8,6 +8,13 @@
     padding: 1%;
 }
 
+/* This class targets the main white container box of the alert */
+    .my-swal-popup {
+        border: 3px solid #FAB519; /* Example border: 5px thick, solid, green color */
+        /* Optional: you can customize border radius too */
+        border-radius: 20px;
+    }
+
 .container {
     display: flex;
     flex-direction: column;
@@ -27,7 +34,6 @@
     grid-template-columns: 1fr 3fr;
     justify-content: center;
     gap: 10px;
-    border: 1px solid #FAB519;
     border-radius: 20px;
     padding: 5px;  /* 👈 THIS is the key */
 }
@@ -37,11 +43,14 @@
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    border: #e0a800 1px solid;
+    border-radius: 20px;
     padding: 5px;  /* 👈 THIS is the key */
+    justify-content: center;
 }
 .li {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 2fr 1fr;
     width: 100%;
 }
 

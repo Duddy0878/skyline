@@ -221,7 +221,42 @@ app.post('/upload-pic', upload.single('image'), (req, res) => {
   }
 });
 
+app.post('/orders', async (req, res) => {
+  const { job_id, car_number, status} = req.body;
+
+  try {
+    const [result] = await db.execute(
+      `INSERT INTO orders(job_id, car_number,status)
+      VALUES (?,?,?)`,
+      [job_id, car_number, status]
+    );
+    res.status(201).json({ success: true, insertedId: result.insertId });
+  } catch (error) {
+    console.error('Error inserting order:', error);
+    res.status(500).json({ error: error.message });
+  }
+})
+
 const PORT = process.env.PORT || 3001;
 server.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
+
+app.post('/order-items', async (req, res) => {
+  const { items } = req.body;
+  try {
+    const values = items.map(item => [item.order_id, item.item_id, item.quantity]);
+    console.log(values);
+    
+    const [result] = await db.query(
+      `INSERT INTO order_items(order_id, item_id, quantity)
+      VALUES ?`,
+      [values]
+    );
+    res.status(201).json({ success: true});
+    
+  } catch (error) {
+    console.error('Error inserting order items:', error);
+    res.status(500).json({ error: error.message });
+  }
+})
