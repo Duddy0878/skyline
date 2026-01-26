@@ -36,7 +36,7 @@ socket.on("item-added", () => {
         createItemCards(grouped[1],'abc'); // general supplies
         createItemCards(grouped[2],'none'); // wood
         createItemCards(grouped[3],'abc'); // safety
-        createItemCards(grouped[4],'size'); // fasteners
+        createItemCards(grouped[4],'kind'); // fasteners
          createItemCards(grouped[6],'order'); // rails
         //  createItemCards(grouped[2]); // Accessories
      }
@@ -60,15 +60,89 @@ loadItems();
 function upperCaseFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
-function createItemCards(item,order){
+
+function createItemCards(itemB,order){
 
 
     if(order === 'order'){
-        item.sort((a, b) => a.order - b.order);
+        itemB.sort((a, b) => a.order - b.order);
+        createCard(itemB);
     }
-    // if(order === 'abc'){
-    //     item.sort((a, b) => a.name.localeCompare(b.name));
-    // }
+
+    if(order === 'kind'){
+        let allKinds = {};
+
+        for(let itB of itemB){
+            if(!allKinds[nameTillNumber(itB.name, 1)]){
+                allKinds[nameTillNumber(itB.name, 1)] = [];
+            }
+            allKinds[nameTillNumber(itB.name, 1)].push(itB);
+        }
+
+        let divB = document.querySelector('.items');
+
+            let categoryFind = category.find(cat => cat.id === itemB[0].cate_id);
+
+            let categoryHeader = document.createElement('div')
+            categoryHeader.className = 'categoryHeader'
+            categoryHeader.innerHTML = `<h2> ${upperCaseFirstLetter(categoryFind.name)} </h2>`
+            divB.appendChild(categoryHeader)
+
+            console.log(allKinds);
+        for(let kind in allKinds){
+            
+        let containerB = document.createElement('div');
+        containerB.className = 'containerB';
+        let extraDiv = document.createElement('div');
+        extraDiv.className = 'extraDiv';
+        let mainExtra = document.createElement('div');
+        mainExtra.className = 'mainExtra';
+
+        let name = document.createElement('div');
+        name.className = 'name';
+        name.innerHTML = `<p style="font-size: 25px">${kind}</p>`;
+        let img = document.createElement('div');
+        img.className = 'pic';
+        img.innerHTML = `<img src="/${allKinds[kind][0].img}" alt="" onerror="this.src='/pic/Asset 3@4x.png'">`
+        mainExtra.appendChild(name);
+        mainExtra.appendChild(img);
+        containerB.appendChild(mainExtra);
+        divB.appendChild(containerB);
+            allKinds[kind].sort((a, b) => parseSize(a.size) - parseSize(b.size));
+            for(let it of allKinds[kind]){
+                let container = document.createElement('div');
+                container.className = 'li'
+                container.id = it.id;
+
+                let name = document.createElement('div');
+                name.className = 'name';
+                name.innerHTML = `${nameTillNumber(it.name, 2)}`;
+
+                let quantity = document.createElement('div');
+                quantity.className = 'quantity';
+                quantity.innerHTML = `<input type="number" placeholder="0"></input>`;
+                container.appendChild(name);
+                container.appendChild(quantity);
+                extraDiv.appendChild(container);
+
+            }
+
+            containerB.appendChild(extraDiv);
+            
+        }
+
+        
+
+       
+    }
+
+    if(order === 'abc' || order === 'none'){
+        createCard(itemB);
+    }
+
+}
+
+function createCard(item){
     let div = document.querySelector('.items');
 
     let categoryFind = category.find(cat => cat.id === item[0].cate_id);
@@ -77,11 +151,11 @@ function createItemCards(item,order){
     categoryHeader.className = 'categoryHeader'
     categoryHeader.innerHTML = `<h2> ${upperCaseFirstLetter(categoryFind.name)} </h2>`
     div.appendChild(categoryHeader)
+    
             
 
-    
-
     for(let it of item){
+
 
         let container = document.createElement('div');
         container.className = 'container';
@@ -103,5 +177,36 @@ function createItemCards(item,order){
         container.appendChild(quantity);
         div.appendChild(container);
     }
+}
 
+function createList(items){
+
+}
+
+function nameTillNumber(str, number) {
+    // Match: everything up to the first number, then everything after (including x, -, /, spaces, etc.)
+    const match = str.match(/^(.*?)(\d.*)$/);
+    // match[1] = name, match[2] = number/size (including "x" and more)
+    if (number == 1) {
+        return match ? match[1].trim() : str;
+    } else if (number == 2) {
+        return match ? match[2].trim() : '';
+    }
+}
+
+function parseSize(size) {
+    if (!size) return 0;
+    // Handle fractions like "5/8"
+    if (size.includes('/')) {
+        const [num, denom] = size.split('/').map(Number);
+        return denom ? num / denom : num;
+    }
+    // Handle mixed numbers like "1 1/2"
+    if (size.match(/^\d+ \d+\/\d+$/)) {
+        const [whole, fraction] = size.split(' ');
+        const [num, denom] = fraction.split('/').map(Number);
+        return Number(whole) + (denom ? num / denom : num);
+    }
+    // Handle plain numbers
+    return parseFloat(size) || 0;
 }
