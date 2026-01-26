@@ -1,1 +1,3 @@
 public/pic/
+.env
+node_modules/
