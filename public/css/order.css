@@ -1,5 +1,9 @@
 
 
+.page{
+    width: 600px;
+}
+
 .items {
     display: flex;
     flex-wrap: wrap;
@@ -91,18 +95,26 @@
     grid-template-columns: 1fr 1fr;
 }
 
+.job select{
+    border: #FAB519 2px solid;
+    border-radius: 6px;
+}
+
 .job input{
-    padding: 1%;
-    font-size: 16px;
     border: none;
     border-bottom: #FAB519 2px solid;
+}
+
+.job input, .job select{
+    padding: 1%;
+    font-size: 16px;
     width: 200px;
     background: transparent;
     margin: 2%;
     color: #FAB519;
 }
 
-button {
+.hide button {
     padding: 2% 3%;
     margin: 3%;
    display: grid;
@@ -115,7 +127,7 @@ button {
     cursor: pointer;
 }
 
-button:hover {
+.hide button:hover {
     background-color: #e0a800;
 }
 

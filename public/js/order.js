@@ -37,6 +37,7 @@ socket.on("item-added", () => {
         createItemCards(grouped[2],'none'); // wood
         createItemCards(grouped[3],'abc'); // safety
         createItemCards(grouped[4],'kind'); // fasteners
+        createItemCards(grouped[5],'kind'); // bits
          createItemCards(grouped[6],'order'); // rails
         //  createItemCards(grouped[2]); // Accessories
      }
