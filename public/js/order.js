@@ -39,6 +39,7 @@ socket.on("item-added", () => {
         createItemCards(grouped[4],'kind'); // fasteners
         createItemCards(grouped[5],'kind'); // bits
          createItemCards(grouped[6],'order'); // rails
+         createItemCards(grouped[9999],'abc'); // unknown
         //  createItemCards(grouped[2]); // Accessories
      }
      if(typeOf === 'ropes'){
