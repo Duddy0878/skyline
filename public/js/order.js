@@ -1,3 +1,4 @@
+
 import {fetchApi, fetchApiWithId , postApi , patchApi} from './api.js'
 import { io } from "https://cdn.socket.io/4.7.5/socket.io.esm.min.js";
 const socket = io();
@@ -128,6 +129,7 @@ document.querySelector('button').addEventListener('click', async () => {
         for(let orderItem of orderItems){
             orderItem.order_id = orderId;
         }
+        loadingOn();
         let sendOrderItems = await postApi('/order-items', {items: orderItems});
         if(sendOrderItems.success){
             swal.fire({
@@ -144,15 +146,34 @@ document.querySelector('button').addEventListener('click', async () => {
                 customClass: {
                     popup: 'my-swal-popup'
                 }                        
+            }).then(() => {
+                window.location.href = '/index.html';
             });
         }
-        
-
-    }
+        else if(!sendOrderItems.success){
+            swal.fire({
+                title: `Error placing order: ${sendOrderItems.error}`,
+                text: 'Please Contact Your Project Manager',
+                background: 'black',
+                color: 'red',
+                border: '#FAB519 5px solid',
+                imageUrl: '/pic/red.png',
+                imageWidth: 200,
+                imageHeight: 200,
+                imageAlt: 'Error Logo',
+                confirmButtonText: 'OK',
+                confirmButtonColor: 'red',
+                customClass: {
+                    popup: 'my-swal-popup'
+                } 
+            })
+        }
 
     
      
-});
+     };
+
+    });
 
 
 function upperCaseFirstLetter(string) {
@@ -308,3 +329,12 @@ function parseSize(size) {
     // Handle plain numbers
     return parseFloat(size) || 0;
 }
+
+
+         function loadingOn(){
+             document.querySelector('.loading').style.display = 'block';
+         }
+
+         function loadingOff(){
+             document.querySelector('.loading').style.display = 'none';
+         }

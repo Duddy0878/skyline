@@ -430,6 +430,55 @@ h2{
               }
             }
 
+/* #region orders */
+
+.orders{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 5%;
+}
+
+.orders .each{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    border-bottom: #FAB519 2px solid;
+    padding-bottom: 10px;
+}
+
+.orders .infoO{
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr;
+    gap: 20px;
+    
+}
+
+.orders .buttonsO{
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.orders .buttonsO button{
+    padding: 2% 3%;
+    margin: 3%;
+   display: grid;
+   color: #FAB519;
+   justify-self: center;
+   border: #FAB519 1px solid;
+    width: 80%;
+    font-size: 16px;
+    background-color: transparent;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.orders .buttonsO button:hover {
+    background-color: #FAB519;
+    color: black;
+}
+
+/* #endregion orders */
+
 
 
 

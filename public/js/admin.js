@@ -95,9 +95,13 @@ socket.on('item-added', () => {
                 if(id === 'newF'){
                     status = false;
                 }
-                if(id === 'newOrder' || id === 'editItems' || id === 'addInventory'){
+                if(id === 'editItems' || id === 'addInventory'){
                       status = id;
                       await getItem(counter)
+                }
+                if(id === 'orders'){
+                    status = id;
+                    orders()
                 }
                 counter++;
             })
@@ -393,8 +397,7 @@ socket.on('item-added', () => {
                 id = itemDiv.id 
                 let item = await fetchApiWithId('/items', id)
 
-                if(status === 'newOrder'){
-
+                if(status === 'orders'){
                 }
                 if(status === 'editItems'){
 
@@ -409,8 +412,57 @@ socket.on('item-added', () => {
 
         }
 
-        function orders(){
+        let countNewOrders = 0;
+       async function orders(){
+            
+            let orders = await fetchApi('/orders')
+            if(countNewOrders === orders.length) return;
+            let jobs = await fetchApi('/jobs')
 
+            let ordersContainer = document.querySelector('.orders')
+            ordersContainer.innerHTML = ''
+
+            for (const order of orders) {
+                let div = document.createElement('div')
+                div.className = 'each'
+                countNewOrders++;
+                let curentJob = jobs.find(job => job.id === order.job_id);
+
+
+                let infoDiv = document.createElement('div')
+                infoDiv.className = 'infoO'
+                infoDiv.innerHTML = `       
+                           <div class="employee">
+                    ${upperCaseFirstLetter(order.name)}
+                </div>
+                  <div class="address">
+                    ${curentJob.address + ' Car ' + order.car_number}
+                  </div>
+                  <div class="dateO">
+                    ${dayjs(order.date).format('MMMM D, YYYY')}
+                  </div>
+                  <div class="orderNumber">
+                     Order #000${order.id}
+                    </div>
+                  <div class="status">
+                    Status: ${order.status}
+                  </div>
+                <div class="phase">
+                  Phase: 1
+                </div>
+                `
+                let buttonsDiv = document.createElement('div')
+                buttonsDiv.className = 'buttonsO'
+                buttonsDiv.innerHTML = `
+                                  <button class="viewOrder">View Order</button>
+                  <button class="orderd">Orderd</button>`
+
+                div.appendChild(infoDiv)
+                div.appendChild(buttonsDiv)
+                ordersContainer.appendChild(div)
+            }
+            
+          
         }
 
         function editItems(){
@@ -427,7 +479,7 @@ socket.on('item-added', () => {
             
             let img = document.createElement('div')
             img.style.justifyContent = 'center'
-            img.innerHTML = `<img src="${item.img}" alt="" style="width:100%;height:300px;object-fit:contain;" onerror="this.src='/pic/Asset%203%404x.png'">`
+            img.innerHTML = `<img src="/${item.img}" alt="" style="width:100%;height:300px;object-fit:contain;" onerror="this.src='/pic/Asset%203%404x.png'">`
             div.appendChild(img)
             
             let name = document.createElement('div')

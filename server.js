@@ -221,6 +221,17 @@ app.post('/upload-pic', upload.single('image'), (req, res) => {
   }
 });
 
+app.get('/orders', async (req, res) => {
+  try {
+    const [result] = await db.execute('SELECT * FROM orders');
+    res.json(result);
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+    })
+  }
+})
+
 app.post('/orders', async (req, res) => {
   const { job_id, car_number, status, name} = req.body;
 
