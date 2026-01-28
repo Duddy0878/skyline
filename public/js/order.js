@@ -80,6 +80,7 @@ document.querySelector('button').addEventListener('click', async () => {
         }
     });
 
+    let employee = document.querySelector('.nameE').value;
     let jobsiteSelect = document.querySelector('#jobsiteSelect');
     let jobSite = jobsiteSelect.value;
     let carNumber = document.querySelector('.car input').value;
@@ -102,9 +103,9 @@ document.querySelector('button').addEventListener('click', async () => {
                     })
         return;
     }
-    if(!jobSite || !carNumber){
+    if(!employee || !jobSite || !carNumber){
                     swal.fire({
-                        title: `Please fill in ${!jobSite ? 'Job Site' : 'Car Number'}!`,
+                        title: `Please fill in ${!employee ? 'Employee Name' : !jobSite ? 'Job Site' : 'Car Number'}!`,
                         background: 'black',
                         color: 'red',
                         border: '#FAB519 5px solid',
@@ -122,7 +123,7 @@ document.querySelector('button').addEventListener('click', async () => {
         return;
     }
 
-    let sendOrder = await postApi('/orders', {job_id: jobSite, car_number: carNumber, status: 'pending'})
+    let sendOrder = await postApi('/orders', {job_id: jobSite, car_number: carNumber, status: 'pending',name: employee})
     let orderId = sendOrder.insertedId;
     if(orderId){
         for(let orderItem of orderItems){

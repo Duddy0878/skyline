@@ -222,13 +222,13 @@ app.post('/upload-pic', upload.single('image'), (req, res) => {
 });
 
 app.post('/orders', async (req, res) => {
-  const { job_id, car_number, status} = req.body;
+  const { job_id, car_number, status, name} = req.body;
 
   try {
     const [result] = await db.execute(
-      `INSERT INTO orders(job_id, car_number,status)
-      VALUES (?,?,?)`,
-      [job_id, car_number, status]
+      `INSERT INTO orders(job_id, car_number,status, name)
+      VALUES (?,?,?,?)`,
+      [job_id, car_number, status, name]
     );
     res.status(201).json({ success: true, insertedId: result.insertId });
   } catch (error) {
