@@ -79,7 +79,7 @@ document.querySelector('button').addEventListener('click', async () => {
         }
     });
 
-    let employee = document.querySelector('.nameE').value;
+    let employee = document.querySelector('.nameE input').value;
     let jobsiteSelect = document.querySelector('#jobsiteSelect');
     let jobSite = jobsiteSelect.value;
     let carNumber = document.querySelector('.car input').value;
