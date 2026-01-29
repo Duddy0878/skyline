@@ -48,10 +48,11 @@ socket.on("item-added", () => {
         // createItemCards(grouped[4],'kind'); // fasteners
         // createItemCards(grouped[5],'kind'); // bits
         createItemCards(grouped[7],'emt'); // electrical
-        createItemCards(grouped[8],'abc'); // troughing
+        createItemCards(grouped[8],'order'); // troughing
         createItemCards(grouped[9],'abc'); // kindorf
-        createItemCards(grouped[10],'abc'); // ropes
-        createItemCards(grouped[11],'abc'); // cab     
+        createItemCards(grouped[10],'abc'); // wires
+        createItemCards(grouped[12],'abc'); // ropes
+        createItemCards(grouped[13],'abc'); // cab     
 
      }
 
@@ -264,37 +265,43 @@ function createItemCards(itemB,order){
     }
 
     if(order === 'emt'){
-        let sizes = {};
+        let sizes = {
+            "3/8": [],
+            "1/2": [],
+            "3/4": [],
+            "1-1/2": [],
+            "else": []
+
+        };
         for(let itB of itemB){
             if(itB.size === '3/8' || itB.size === 3/8){
-                if(!sizes['3/8']){
-                    sizes['3/8'] = []
-                }
                 sizes['3/8'].push(itB);
             }
             if(itB.size === '1/2' || itB.size === 1/2){
-                if(!sizes['1/2']){
-                    sizes['1/2'] = []
-                }
                 sizes['1/2'].push(itB);
             }
             if(itB.size === '3/4' || itB.size === 3/4){
-                if(!sizes['3/4']){
-                    sizes['3/4'] = []
-                }
+
                 sizes['3/4'].push(itB);
             }
             if(itB.size === '1-1/2' || itB.size === 1-1/2){
-                if(!sizes['1-1/2']){
-                    sizes['1-1/2'] = []
-                }
+
                 sizes['1-1/2'].push(itB);
+            }
+            if(!itB.size) {
+                sizes['else'].push(itB);
             }
         }
 
         for(let size in sizes){
             sizes[size].sort((a, b) => a.order - b.order);
-            createCard(sizes[size],true,size);
+             if(size === 'else'){
+                createCard(sizes[size]);
+             }
+             else{
+
+                 createCard(sizes[size],true,size);
+             }
         }
         
         // createCard(itemB);
