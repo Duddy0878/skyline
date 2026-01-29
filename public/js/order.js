@@ -39,15 +39,19 @@ socket.on("item-added", () => {
         createItemCards(grouped[3],'abc'); // safety
         createItemCards(grouped[4],'kind'); // fasteners
         createItemCards(grouped[5],'kind'); // bits
-         createItemCards(grouped[6],'order'); // rails // unknown
+        createItemCards(grouped[6],'order'); // rails // unknown
         //  createItemCards(grouped[2]); // Accessories
-     }
-     if(typeOf === 'ropes'){
-        createItemCards(grouped[7],'abc'); // ropes
-        createItemCards(grouped[8],'abc'); // electrical  
-        createItemCards(grouped[9],'abc'); // hardware
-        createItemCards(grouped[200],'abc'); // accessories      
-        createItemCards(grouped[300],'abc'); // safety
+    }
+    if(typeOf === 'ropes'){
+        // createItemCards(grouped[1],'abc'); // general supplies
+        // createItemCards(grouped[3],'abc'); // safety
+        // createItemCards(grouped[4],'kind'); // fasteners
+        // createItemCards(grouped[5],'kind'); // bits
+        createItemCards(grouped[7],'emt'); // electrical
+        createItemCards(grouped[8],'abc'); // troughing
+        createItemCards(grouped[9],'abc'); // kindorf
+        createItemCards(grouped[10],'abc'); // ropes
+        createItemCards(grouped[11],'abc'); // cab     
 
      }
 
@@ -259,10 +263,50 @@ function createItemCards(itemB,order){
         createCard(itemB);
     }
 
+    if(order === 'emt'){
+        let sizes = {};
+        for(let itB of itemB){
+            if(itB.size === '3/8' || itB.size === 3/8){
+                if(!sizes['3/8']){
+                    sizes['3/8'] = []
+                }
+                sizes['3/8'].push(itB);
+            }
+            if(itB.size === '1/2' || itB.size === 1/2){
+                if(!sizes['1/2']){
+                    sizes['1/2'] = []
+                }
+                sizes['1/2'].push(itB);
+            }
+            if(itB.size === '3/4' || itB.size === 3/4){
+                if(!sizes['3/4']){
+                    sizes['3/4'] = []
+                }
+                sizes['3/4'].push(itB);
+            }
+            if(itB.size === '1-1/2' || itB.size === 1-1/2){
+                if(!sizes['1-1/2']){
+                    sizes['1-1/2'] = []
+                }
+                sizes['1-1/2'].push(itB);
+            }
+        }
+
+        for(let size in sizes){
+            sizes[size].sort((a, b) => a.order - b.order);
+            createCard(sizes[size],true,size);
+        }
+        
+        // createCard(itemB);
+    }
+
 }
 
-function createCard(item){
+function createCard(item,yes=false,word){
     let div = document.querySelector('.items');
+
+    if(!yes){
+
 
     let categoryFind = category.find(cat => cat.id === item[0].cate_id);
 
@@ -270,6 +314,15 @@ function createCard(item){
     categoryHeader.className = 'categoryHeader'
     categoryHeader.innerHTML = `<h2> ${upperCaseFirstLetter(categoryFind.name)} </h2>`
     div.appendChild(categoryHeader)
+    }
+    if(yes){
+    
+    let categoryHeader = document.createElement('div')
+    categoryHeader.className = 'categoryHeader'
+    categoryHeader.innerHTML = `<h2>EMT ${upperCaseFirstLetter(word)}" </h2>`
+    div.appendChild(categoryHeader)
+      
+    }
     
             
 
