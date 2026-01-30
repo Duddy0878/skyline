@@ -4,6 +4,12 @@
     width: 600px;
 }
 
+@media (max-width: 700px) {
+    .page{
+        width: 100%;
+    }
+}
+
 .items {
     display: flex;
     flex-wrap: wrap;
