@@ -56,7 +56,7 @@ socket.on("item-added", () => {
 
      }
 
-     document.querySelector('.hide').style.display = 'block';
+     document.querySelector('.hide').style.display = 'grid';
     
     
     
