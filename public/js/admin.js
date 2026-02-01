@@ -8,6 +8,11 @@ socket.on('item-added', () => {
   loadItems();
 });
 
+  const token = localStorage.getItem('authToken');
+  if (!token) {
+    window.location.href = '/html/login.html';
+  }
+
         loadItems()
         loadCategorys()
         buttonsClick()

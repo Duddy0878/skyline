@@ -11,6 +11,7 @@ const http = require('http');
 const server = http.createServer(app);
 const { Server } = require('socket.io');
 const io = new Server(server);
+const jwt = require('jsonwebtoken');
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -19,6 +20,38 @@ app.use(cors());
 app.use(express.json({ limit: '20mb' })); // or higher if needed
 app.use(express.urlencoded({ limit: '20mb', extended: true }));
 
+const JWT_SECRET = 'your-secret-key-change-in-production';
+
+app.post('/login', async (req, res) => {
+  const { username, password } = req.body;
+
+  // Example hardcoded credentials (use database in production)
+  const ADMIN_USERNAME = 'admin';
+  const ADMIN_PASSWORD = 'password123';
+
+  if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+    const token = jwt.sign({ username }, JWT_SECRET, { expiresIn: '24h' });
+    res.json({ success: true, token });
+  } else {
+    res.status(401).json({ success: false, message: 'Invalid credentials' });
+  }
+});
+
+// Middleware to verify JWT
+const verifyToken = (req, res, next) => {
+  const token = req.headers.authorization?.split(' ')[1];
+  
+  if (!token) {
+    return res.status(401).json({ success: false, message: 'No token' });
+  }
+
+    try {
+    jwt.verify(token, JWT_SECRET);
+    next();
+  } catch (error) {
+    return res.status(403).json({ success: false, message: 'Invalid token' });
+  }
+};
 
 const picFolder = path.join(__dirname, 'public', 'pic');
 
@@ -39,7 +72,7 @@ const upload = multer({
 
 
 
-app.get('/items', async (req, res) => {
+app.get('/items', verifyToken, async (req, res) => {
   try {
     const [result] = await db.execute('SELECT * FROM items');
     res.json(result);
@@ -55,7 +88,7 @@ app.get('/items', async (req, res) => {
     });
   }
 });
-app.post('/items', async (req, res) => {
+app.post('/items', verifyToken, async (req, res) => {
   
   const {name, img, cate_id ,size} = req.body;
   try {
@@ -73,7 +106,7 @@ app.post('/items', async (req, res) => {
   }
 });
 
-app.get('/items:id', async (req, res) => {
+app.get('/items:id', verifyToken, async (req, res) => {
   try {
     
     const id = parseInt(req.params.id);
@@ -93,7 +126,7 @@ app.get('/items:id', async (req, res) => {
       });
     }
   });
-app.patch('/items:id', async (req, res) => {
+app.patch('/items:id', verifyToken, async (req, res) => {
   try {
     
     const id = parseInt(req.params.id);
@@ -135,7 +168,7 @@ app.patch('/items:id', async (req, res) => {
     }
   });
 
-app.get('/categorys', async (req, res) => {
+app.get('/categorys', verifyToken, async (req, res) => {
     console.log('GET /categorys called');
     try {
       const [result] = await db.execute('SELECT * FROM categorys');
@@ -150,7 +183,7 @@ app.get('/categorys', async (req, res) => {
     }
 });
 
-app.get('/category:id', async (req, res) => {
+app.get('/category:id', verifyToken, async (req, res) => {
   try {
     
     const id = parseInt(req.params.id);
@@ -171,7 +204,7 @@ app.get('/category:id', async (req, res) => {
     }
   });
 
-app.post('/ropes', async (req, res) => {
+app.post('/ropes', verifyToken, async (req, res) => {
   
   const {hoist_rope, governer_rope, whisper_flex ,travel_cable, travel_multi, hoistway , job_id, car} = req.body;
   
@@ -191,7 +224,7 @@ app.post('/ropes', async (req, res) => {
   }
 });
 
-app.get('/jobs', async (req, res) => {
+app.get('/jobs', verifyToken, async (req, res) => {
   try {
     const [result] = await db.execute('SELECT * FROM jobs');
     res.json(result);
@@ -221,7 +254,7 @@ app.post('/upload-pic', upload.single('image'), (req, res) => {
   }
 });
 
-app.get('/orders', async (req, res) => {
+app.get('/orders', verifyToken, async (req, res) => {
   try {
     const [result] = await db.execute('SELECT * FROM orders');
     res.json(result);
@@ -232,7 +265,7 @@ app.get('/orders', async (req, res) => {
   }
 })
 
-app.post('/orders', async (req, res) => {
+app.post('/orders', verifyToken, async (req, res) => {
   const { job_id, car_number, status, name} = req.body;
 
   try {
@@ -248,7 +281,7 @@ app.post('/orders', async (req, res) => {
   }
 })
 
-app.get('/order-items:id', async (req, res) => {
+app.get('/order-items:id', verifyToken,     async (req, res) => {
 
   try{
     const order_id = parseInt(req.params.id);
@@ -273,7 +306,7 @@ app.get('/order-items:id', async (req, res) => {
     }
   });
 
-app.post('/order-items', async (req, res) => {
+app.post('/order-items', verifyToken, async (req, res) => {
   const { items } = req.body;
   try {
     const values = items.map(item => [item.order_id, item.item_id, item.quantity]);

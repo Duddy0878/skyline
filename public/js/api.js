@@ -1,28 +1,80 @@
 
-   export async function fetchApi (api){
-            
-            try {
-               const res = await fetch(api);
-                if (!res.ok) throw new Error(`Failed to fetch ${api}: ${res.status}`);
-                return await res.json();
-            } catch (err) {
-                console.error(err);
-                throw err; // important
-            }
-                    
-        }
+// Get token from localStorage
+function getAuthToken() {
+    return localStorage.getItem('authToken') || '';
+}
 
-   export async function fetchApiWithId (api, id){
-            try {
-               const res = await fetch(`${api}${id}`);
-                if (!res.ok) throw new Error(`Failed to fetch ${api}: ${res.status}`);
-                return await res.json();
-            } catch (err) {
-                console.error(err);
-                throw err; // important
+export async function fetchApi(api) {
+    try {
+        const token = getAuthToken();
+        const res = await fetch(api, {
+            headers: {
+                'Authorization': `Bearer ${token}`
             }
-                   
-   }
+        });
+        
+        if (res.status === 401) {
+            localStorage.removeItem('authToken');
+            window.location.href = '/html/login.html';
+            return;
+        }
+        
+        if (!res.ok) throw new Error(`Failed to fetch ${api}: ${res.status}`);
+        return await res.json();
+    } catch (err) {
+        console.error(err);
+        throw err;
+    }
+}
+
+export async function fetchApiWithId(api, id) {
+    try {
+        const token = getAuthToken();
+        const res = await fetch(`${api}${id}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        
+        if (res.status === 401) {
+            localStorage.removeItem('authToken');
+            window.location.href = '/html/login.html';
+            return;
+        }
+        
+        if (!res.ok) throw new Error(`Failed to fetch ${api}: ${res.status}`);
+        return await res.json();
+    } catch (err) {
+        console.error(err);
+        throw err;
+    }
+}
+
+export async function postApi(api, data) {
+    try {
+        const token = getAuthToken();
+        const res = await fetch(api, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(data)
+        });
+        
+        if (res.status === 401) {
+            localStorage.removeItem('authToken');
+            window.location.href = '/html/login.html';
+            return;
+        }
+        
+        if (!res.ok) throw new Error(`Failed to post: ${res.status}`);
+        return await res.json();
+    } catch (err) {
+        console.error(err);
+        throw err;
+    }
+}
 
    export async function postApi (api, data){
 
