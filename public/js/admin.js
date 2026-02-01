@@ -455,7 +455,7 @@ socket.on('item-added', () => {
                 buttonsDiv.className = 'buttonsO'
                 buttonsDiv.innerHTML = `
                                   <button id="${order.id}" class="viewOrder">View Order</button>
-                  <button class="orderd">Orderd</button>`
+                  <button class="approve">Approve</button>`
 
                 div.appendChild(infoDiv)
                 div.appendChild(buttonsDiv)

@@ -488,6 +488,7 @@ h2{
     display: grid;
     grid-template-columns: 6fr 0.5fr 0.5fr;
     font-size: 20px;
+    padding: 3px;
 
     align-items: center;
     margin-bottom: 50px;
