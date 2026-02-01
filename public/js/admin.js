@@ -466,7 +466,9 @@ socket.on('item-added', () => {
                 btn.addEventListener('click', async (e) => {
                     let orderDiv = e.target.closest('.buttonsO')
                     let id = orderDiv.querySelector('.viewOrder').id
-                    viewOrder(id, orders.find(o => o.id == id), jobs.find(job => job.id === orders.find(o => o.id == id)).address)
+                    let orderData = orders.find(o => o.id == id)
+
+                    viewOrder(id, orderData, jobs.find(job => job.id === orderData.job_id).address)
 
                 })
             })
