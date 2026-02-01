@@ -493,7 +493,7 @@ h2{
 }
 
 .eachOrderView th, .eachOrderView td{
-    border: black 1px solid;
+   
     padding: 5px;
     text-align: center;
     color: black;
@@ -501,14 +501,19 @@ h2{
 
 .eachOrderView th{
     background-color: darkgray;
+    border: black 1px solid;
+    
 }
 
 .eachOrderView tr:nth-child(even) {
     background-color: lightgrey;
+    border-right: black 1px solid;
+    
 }
 
 .eachOrderView tr:nth-child(odd) {
     background-color: white;
+    border-right: black 1px solid;
 }
 
 
