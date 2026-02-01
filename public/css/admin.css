@@ -479,6 +479,7 @@ h2{
 
 .eachOrderView{
     display: none;
+    width: 80%;
     padding: 5%;
     border-top: #FAB519 2px solid;
     color: #FAB519;
