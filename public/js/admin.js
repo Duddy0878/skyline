@@ -481,18 +481,28 @@ socket.on('item-added', () => {
 
             let eachOrderView = document.querySelector('.eachOrderView')
             eachOrderView.innerHTML = ''
+            let table = document.createElement('table')
+            let headerRow = document.createElement('tr')
+            headerRow.innerHTML = `
+                <th> QTY </th>
+                <th> Item Name </th>
+                <th> Shop? </th>
+                <th> Price </th>
+            `
             eachOrderView.style.display = 'block'
             for (const item of orderItems) {
-                let div = document.createElement('div')
-                div.className = 'eachItemOrder'
-                div.innerHTML = `
-                    ${item.quantity} - ${item.name}
-                   
+                let row = document.createElement('tr')
+                row.className = 'itemRow'
+                row.innerHTML = `
+                    <td> ${item.quantity} </td>
+                    <td> ${item.name} </td>
+                    <td> <input type="checkbox" ${item.shop ? 'checked' : ''}> </td>
+                    <td> ${item.price || ''} </td>
                 `
-                eachOrderView.appendChild(div)
+                table.appendChild(row)
             }
 
-             
+            eachOrderView.appendChild(table)
         }
 
         function editItems(){
