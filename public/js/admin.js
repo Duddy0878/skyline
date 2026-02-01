@@ -454,15 +454,30 @@ socket.on('item-added', () => {
                 let buttonsDiv = document.createElement('div')
                 buttonsDiv.className = 'buttonsO'
                 buttonsDiv.innerHTML = `
-                                  <button class="viewOrder">View Order</button>
+                                  <button id="${order.id}" class="viewOrder">View Order</button>
                   <button class="orderd">Orderd</button>`
 
                 div.appendChild(infoDiv)
                 div.appendChild(buttonsDiv)
                 ordersContainer.appendChild(div)
             }
+
+            document.querySelectorAll('.viewOrder').forEach( (btn) => {
+                btn.addEventListener('click', async (e) => {
+                    let orderDiv = e.target.closest('.buttonsO')
+                    let id = orderDiv.querySelector('.viewOrder').id
+                    viewOrder(id)
+
+                })
+            })
             
           
+        }
+
+        async function viewOrder(id){
+            let tryout =  await fetchApiWithId('/orders', id)
+
+              console.log(tryout);
         }
 
         function editItems(){

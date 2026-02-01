@@ -248,10 +248,30 @@ app.post('/orders', async (req, res) => {
   }
 })
 
-const PORT = process.env.PORT || 3001;
-server.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
+app.get('/order-items:id', async (req, res) => {
+
+  try{
+    const order_id = parseInt(req.params.id);
+    const [result] = await db.execute(
+      `SELECT oi.*, i.name
+       FROM order_items oi
+       JOIN items i ON i.id = oi.item_id
+       WHERE oi.order_id = ?`,
+      [order_id]
+    );
+    res.json(result);
+  } catch (error) {
+    res.status(500).json({ 
+      success: false, 
+      error: error.message,
+      // env: {
+        //   host:  '127.0.0.1',
+        //   user:  'root',
+        //   database:  'small material',
+        // }
+      });
+    }
+  });
 
 app.post('/order-items', async (req, res) => {
   const { items } = req.body;
@@ -271,3 +291,11 @@ app.post('/order-items', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 })
+
+
+
+const PORT = process.env.PORT || 3001;
+server.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});
+
