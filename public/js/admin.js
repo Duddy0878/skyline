@@ -486,13 +486,8 @@ socket.on('item-added', () => {
                 let div = document.createElement('div')
                 div.className = 'eachItemOrder'
                 div.innerHTML = `
-                <div class="itemQuantity">
-                    ${item.quantity} -
-                </div>
-                  
-                    <div class="itemName">
-                        ${item.name}
-                    </div>
+                    ${item.quantity} - ${item.name}
+                   
                 `
                 eachOrderView.appendChild(div)
             }
