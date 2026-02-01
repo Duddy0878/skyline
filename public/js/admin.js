@@ -478,7 +478,6 @@ socket.on('item-added', () => {
             let orderItems =  await fetchApiWithId('/order-items', id)
 
             document.querySelector('.items').style.display = 'none';
-            let curentJob = jobs.find(job => job.id === orderData.job_id);
 
             let eachOrderView = document.querySelector('.eachOrderView')
             eachOrderView.innerHTML = ''
