@@ -475,7 +475,7 @@ socket.on('item-added', () => {
         }
 
         async function viewOrder(id){
-            let tryout =  await fetchApiWithId('/orders', id)
+            let tryout =  await fetchApiWithId('/order-items', id)
 
               console.log(tryout);
         }
