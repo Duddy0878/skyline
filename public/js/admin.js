@@ -466,7 +466,7 @@ socket.on('item-added', () => {
                 btn.addEventListener('click', async (e) => {
                     let orderDiv = e.target.closest('.buttonsO')
                     let id = orderDiv.querySelector('.viewOrder').id
-                    viewOrder(id, orders.find(o => o.id == id))
+                    viewOrder(id, orders.find(o => o.id == id), jobs.find(job => job.id === orders.find(o => o.id == id)))
 
                 })
             })
@@ -474,7 +474,7 @@ socket.on('item-added', () => {
           
         }
 
-        async function viewOrder(id,orderData){
+        async function viewOrder(id,orderData,curentJob){
             let orderItems =  await fetchApiWithId('/order-items', id)
 
             document.querySelector('.items').style.display = 'none';
