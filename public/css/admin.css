@@ -488,12 +488,26 @@ h2{
 .eachOrderView table{
     width: 100%;
     border-collapse: collapse;
+
 }
 
 .eachOrderView th, .eachOrderView td{
     border: #FAB519 1px solid;
     padding: 10px;
     text-align: center;
+}
+
+.eachOrderView th{
+    background-color: darkgrey;
+    color: black;
+}
+
+.eachOrderView td[even]{
+    background-color: white;
+}
+
+.eachOrderView td[odd]{
+    background-color: lightgrey;
 }
 
 
