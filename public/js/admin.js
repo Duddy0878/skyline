@@ -477,6 +477,8 @@ socket.on('item-added', () => {
         async function viewOrder(id){
             let orderItems =  await fetchApiWithId('/order-items', id)
 
+            document.querySelector('.items').style.display = 'none';
+
             let eachOrderView = document.querySelector('.eachOrderView')
             eachOrderView.innerHTML = ''
             eachOrderView.style.display = 'block'
