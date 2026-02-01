@@ -484,6 +484,12 @@ h2{
     color: #FAB519;
 }
 
+.eachOrderView .eachItemOrder{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
 /* #endregion orders */
 
 
