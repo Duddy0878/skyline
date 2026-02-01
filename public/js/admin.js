@@ -475,9 +475,26 @@ socket.on('item-added', () => {
         }
 
         async function viewOrder(id){
-            let tryout =  await fetchApiWithId('/order-items', id)
+            let orderItems =  await fetchApiWithId('/order-items', id)
 
-              console.log(tryout);
+            let eachOrderView = document.querySelector('.eachOrderView')
+            eachOrderView.innerHTML = ''
+            eachOrderView.style.display = 'block'
+            for (const item of orderItems) {
+                let div = document.createElement('div')
+                div.className = 'eachItemOrder'
+                div.innerHTML = `
+                <div class="itemQuantity">
+                    Quantity: ${item.quantity}
+                </div>
+                    <div class="itemName">
+                        ${item.name}
+                    </div>
+                `
+                eachOrderView.appendChild(div)
+            }
+
+             
         }
 
         function editItems(){
