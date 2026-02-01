@@ -479,10 +479,18 @@ h2{
 
 .eachOrderView{
     display: none;
-    width: 80%;
+    width: 70%;
     padding: 5%;
     border-top: #FAB519 2px solid;
     color: #FAB519;
+}
+
+.eachOrderView .headerO{
+    display: grid;
+    grid-template-columns: 4fr 1fr 1fr;
+    align-items: center;
+    margin-bottom: 10px;
+    border-bottom: #FAB519 2px solid;
 }
 
 .eachOrderView table{

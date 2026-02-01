@@ -466,7 +466,7 @@ socket.on('item-added', () => {
                 btn.addEventListener('click', async (e) => {
                     let orderDiv = e.target.closest('.buttonsO')
                     let id = orderDiv.querySelector('.viewOrder').id
-                    viewOrder(id)
+                    viewOrder(id, orders.find(o => o.id == id))
 
                 })
             })
@@ -474,13 +474,23 @@ socket.on('item-added', () => {
           
         }
 
-        async function viewOrder(id){
+        async function viewOrder(id,orderData){
             let orderItems =  await fetchApiWithId('/order-items', id)
 
             document.querySelector('.items').style.display = 'none';
 
             let eachOrderView = document.querySelector('.eachOrderView')
             eachOrderView.innerHTML = ''
+
+            let headerDiv = document.createElement('div')
+            headerDiv.className = 'headerO'
+            headerDiv.innerHTML = `
+                <h2> Order #000${id} Job: ${orderData.address} Car: ${orderData.car_number} Phase: 1 </h2> 
+                <button class="printOrder"> Print Order </button>
+                <button class="closeOrderView"> Close </button>
+
+            `
+            eachOrderView.appendChild(headerDiv)
             let table = document.createElement('table')
             let header = document.createElement('thead')
             let headerRow = document.createElement('tr')
