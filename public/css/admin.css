@@ -483,6 +483,19 @@ h2{
     border-top: #FAB519 2px solid;
     color: #FAB519;
 }
+
+.eachOrderView table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.eachOrderView th, .eachOrderView td{
+    border: #FAB519 1px solid;
+    padding: 10px;
+    text-align: center;
+}
+
+
 /* #endregion orders */
 
 
