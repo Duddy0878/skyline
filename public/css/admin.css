@@ -496,25 +496,27 @@ h2{
     padding: 5px;
     text-align: center;
     color: black;
+    border-right: black 1px solid;
+}
+
+.eachOrderView thead{
+    border-bottom: black 2px solid;
 }
 
 .eachOrderView th{
     background-color: darkgray;
-    border: black 1px solid;
     
 }
 
 .eachOrderView tr:nth-child(even) {
     background-color: lightgrey;
-    border: none;
-    border-right: black 1px solid;
     
 }
 
 .eachOrderView tr:nth-child(odd) {
     background-color: white;
     border: none;
-    border-right: black 1px solid;
+    
 }
 
 
