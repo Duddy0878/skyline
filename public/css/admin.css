@@ -510,6 +510,7 @@ h2{
 
 .eachOrderView tr:nth-child(even) {
     background-color: lightgrey;
+    border: none;
     
 }
 
