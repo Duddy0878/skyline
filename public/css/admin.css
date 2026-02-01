@@ -486,11 +486,11 @@ h2{
 
 .eachOrderView .headerO{
     display: grid;
-    grid-template-columns: 6fr 1fr 1fr;
+    grid-template-columns: 6fr 0.5fr 0.5fr;
     font-size: 20px;
 
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
     border-bottom: #FAB519 2px solid;
 }
 
