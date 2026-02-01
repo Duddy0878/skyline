@@ -487,9 +487,9 @@ socket.on('item-added', () => {
                 div.className = 'eachItemOrder'
                 div.innerHTML = `
                 <div class="itemQuantity">
-                    ${item.quantity}
+                    ${item.quantity} -
                 </div>
-                  -
+                  
                     <div class="itemName">
                         ${item.name}
                     </div>
