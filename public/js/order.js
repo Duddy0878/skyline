@@ -350,12 +350,13 @@ function createCard(item,yes=false,word){
    
     ropeContainer.innerHTML = `
         <div class="ropeItem">
-          Rquested Ropes Package <input type="checkbox" /> <br/>
+         <h2> Requested Ropes Package : &nbsp; <input type="checkbox" /> </h2><br/>
           Includes: Hoist Ropes, governer Ropes, whisper flex, 
-            travel cable, travel multi, hoistway ropes,
-            and shackles.
-            dampning device kit.
-            compsaation chain installation kit
+          and shackles with springs,
+          dampning device kit,
+          compsaation chain installation kit, <br/>
+          travel cable, travel multi, hoistway ropes,
+          kellem grips, hitch brackets,
     `
 
     div.appendChild(ropeContainer);
