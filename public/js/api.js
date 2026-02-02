@@ -40,12 +40,7 @@ export async function postApi(api, data) {
             },
             body: JSON.stringify(data)
         });
-        
-        if (res.status === 401) {
-            localStorage.removeItem('authToken');
-            window.location.href = '/html/login.html';
-            return;
-        }
+    
         
         if (!res.ok) throw new Error(`Failed to post: ${res.status}`);
         return await res.json();
