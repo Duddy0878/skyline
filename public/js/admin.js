@@ -531,7 +531,7 @@ socket.on('item-added', () => {
 
         }
 
-        function addInventory(item){
+        async function addInventory(item){
             let addDiv = document.querySelector('.addInventory')
             addDiv.innerHTML = ''
 
@@ -560,13 +560,18 @@ socket.on('item-added', () => {
             button.innerText = 'Add Inventory'
             addDiv.appendChild(button)
       
-            button.addEventListener('click', () => {
+            button.addEventListener('click', async () => {
                 let quantity = parseInt(input.value, 10);
                 if (isNaN(quantity) || quantity <= 0) {
                     alert('Please enter a valid quantity');
                     return;
                 }
-                // Add inventory logic here
+                let sent = await patchApi('/items', item.id, {quantity: quantity});
+                if (sent.success) {
+                    alert('Inventory added successfully');
+                } else {
+                    alert('Failed to add inventory');
+                }
             });
         }
 

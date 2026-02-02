@@ -62,9 +62,10 @@ export async function postApi(api, data) {
                    body: JSON.stringify(data)
                  })
                  if (!res.ok) {
-                    const text = await res.text();
-                    throw new Error(`Failed to patch to ${api}: ${res.status} ${text}`);
+                     const text = await res.text();
+                     throw new Error(`Failed to patch to ${api}: ${res.status} ${text}`);
                  }
+                    return await res.json();
                 }
                     catch (err) {
                                       console.error(err);

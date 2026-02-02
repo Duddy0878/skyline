@@ -90,12 +90,12 @@ app.get('/items', async (req, res) => {
 });
 app.post('/items', async (req, res) => {
   
-  const {name, img, cate_id ,size} = req.body;
+  const {name, img, cate_id ,size, quantity} = req.body;
   try {
     const [result] = await db.execute(
-      `INSERT INTO items(name, img, cate_id ,size)
-      VALUES (?,?,?,?)`,
-      [name, img, cate_id ,size]
+      `INSERT INTO items(name, img, cate_id ,size, quantity)
+      VALUES (?,?,?,?,?)`,
+      [name, img, cate_id ,size, quantity]
     );
     
     io.emit('item-added');
@@ -105,6 +105,7 @@ app.post('/items', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
 
 app.get('/items:id', async (req, res) => {
   try {
@@ -130,7 +131,7 @@ app.patch('/items:id', async (req, res) => {
   try {
     
     const id = parseInt(req.params.id);
-    const { name, img, cate_id ,size} = req.body;
+    const { name, img, cate_id ,size, quantity} = req.body;
 
     
       const updates = []
@@ -152,7 +153,10 @@ app.patch('/items:id', async (req, res) => {
         updates.push('size = ?')
         values.push(size)
       }
-
+      if (quantity !== undefined) {
+        updates.push('quantity = ?')
+        values.push(quantity)
+      }
       if (updates.length > 0) {
         const sql = `UPDATE items SET ${updates.join(', ')} WHERE id = ?`;
         values.push(id);
