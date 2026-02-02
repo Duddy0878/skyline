@@ -43,15 +43,15 @@ socket.on("item-added", () => {
         //  createItemCards(grouped[2]); // Accessories
     }
     if(typeOf === 'ropes'){
-        // createItemCards(grouped[1],'abc'); // general supplies
-        // createItemCards(grouped[3],'abc'); // safety
-        // createItemCards(grouped[4],'kind'); // fasteners
-        // createItemCards(grouped[5],'kind'); // bits
+        createItemCards(grouped[1],'abc'); // general supplies
+        createItemCards(grouped[3],'abc'); // safety
+        createItemCards(grouped[4],'kind'); // fasteners
+        createItemCards(grouped[5],'kind'); // bits
         createItemCards(grouped[7],'emt'); // electrical
         createItemCards(grouped[8],'order'); // troughing
         createItemCards(grouped[9],'abc'); // kindorf
-        createItemCards(grouped[10],'abc'); // wires
-        createItemCards(grouped[12],'abc'); // ropes
+        createItemCards(grouped[10],'order'); // wires
+        createItemCards(grouped[12],'ropes'); // ropes
         createItemCards(grouped[13],'abc'); // cab     
 
      }
@@ -300,11 +300,17 @@ function createItemCards(itemB,order){
              }
              else{
 
-                 createCard(sizes[size],true,size);
+                 createCard(sizes[size],'emt',size);
              }
         }
         
         // createCard(itemB);
+    }
+
+    if(order === 'ropes'){
+
+        createCard(itemB,'ropes');
+
     }
 
 }
@@ -322,13 +328,39 @@ function createCard(item,yes=false,word){
     categoryHeader.innerHTML = `<h2> ${upperCaseFirstLetter(categoryFind.name)} </h2>`
     div.appendChild(categoryHeader)
     }
-    if(yes){
+    if(yes === 'emt'){
     
     let categoryHeader = document.createElement('div')
     categoryHeader.className = 'categoryHeader'
     categoryHeader.innerHTML = `<h2>EMT ${upperCaseFirstLetter(word)}" </h2>`
     div.appendChild(categoryHeader)
       
+    }
+    if(yes === 'ropes'){
+
+    let categoryFind = category.find(cat => cat.id === item[0].cate_id);
+
+    let categoryHeader = document.createElement('div')
+    categoryHeader.className = 'categoryHeader'
+    categoryHeader.innerHTML = `<h2> ${upperCaseFirstLetter(categoryFind.name)} </h2>`
+    div.appendChild(categoryHeader)
+      
+    let ropeContainer = document.createElement('div');
+    ropeContainer.className = 'ropeContainer';
+   
+    ropeContainer.innerHTML = `
+        <div class="ropeItem">
+          Rquested Ropes Package <input type="checkbox" /> <br/>
+          Includes: Hoist Ropes, governer Ropes, whisper flex, 
+            travel cable, travel multi, hoistway ropes,
+            and shackles.
+            dampning device kit.
+            compsaation chain installation kit
+    `
+
+    div.appendChild(ropeContainer);
+
+
     }
     
             
