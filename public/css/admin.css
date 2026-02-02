@@ -386,7 +386,7 @@ h2{
        border-radius: 5%;
        color: var(--main-color);
        width: 30%;
-       margin-top: 15%;
+       margin-top: 5%;
     }
 
     .addInventory button:hover{
