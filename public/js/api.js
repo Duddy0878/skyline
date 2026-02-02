@@ -6,18 +6,8 @@ function getAuthToken() {
 
 export async function fetchApi(api) {
     try {
-        const token = getAuthToken();
-        const res = await fetch(api, {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        });
-        
-        if (res.status === 401) {
-            localStorage.removeItem('authToken');
-            window.location.href = '/html/login.html';
-            return;
-        }
+
+        const res = await fetch(api);
         
         if (!res.ok) throw new Error(`Failed to fetch ${api}: ${res.status}`);
         return await res.json();
@@ -29,18 +19,8 @@ export async function fetchApi(api) {
 
 export async function fetchApiWithId(api, id) {
     try {
-        const token = getAuthToken();
-        const res = await fetch(`${api}${id}`, {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        });
-        
-        if (res.status === 401) {
-            localStorage.removeItem('authToken');
-            window.location.href = '/html/login.html';
-            return;
-        }
+
+        const res = await fetch(`${api}${id}`);
         
         if (!res.ok) throw new Error(`Failed to fetch ${api}: ${res.status}`);
         return await res.json();
@@ -52,12 +32,11 @@ export async function fetchApiWithId(api, id) {
 
 export async function postApi(api, data) {
     try {
-        const token = getAuthToken();
+
         const res = await fetch(api, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
         });
@@ -78,13 +57,12 @@ export async function postApi(api, data) {
 
 
     export async function patchApi (api, id, data){
-        const token = getAuthToken();
+
               try {
                  const res = await fetch(`${api}${id}`, {
                    method: 'PATCH',
                    headers: {
-                       'Content-Type': 'application/json',
-                       'Authorization': `Bearer ${token}`
+                       'Content-Type': 'application/json'
                    },
                    body: JSON.stringify(data)
                  })

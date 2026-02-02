@@ -72,7 +72,7 @@ const upload = multer({
 
 
 
-app.get('/items', verifyToken, async (req, res) => {
+app.get('/items', async (req, res) => {
   try {
     const [result] = await db.execute('SELECT * FROM items');
     res.json(result);
@@ -88,7 +88,7 @@ app.get('/items', verifyToken, async (req, res) => {
     });
   }
 });
-app.post('/items', verifyToken, async (req, res) => {
+app.post('/items', async (req, res) => {
   
   const {name, img, cate_id ,size} = req.body;
   try {
@@ -106,7 +106,7 @@ app.post('/items', verifyToken, async (req, res) => {
   }
 });
 
-app.get('/items:id', verifyToken, async (req, res) => {
+app.get('/items:id', async (req, res) => {
   try {
     
     const id = parseInt(req.params.id);
@@ -126,7 +126,7 @@ app.get('/items:id', verifyToken, async (req, res) => {
       });
     }
   });
-app.patch('/items:id', verifyToken, async (req, res) => {
+app.patch('/items:id', async (req, res) => {
   try {
     
     const id = parseInt(req.params.id);
@@ -168,7 +168,7 @@ app.patch('/items:id', verifyToken, async (req, res) => {
     }
   });
 
-app.get('/categorys', verifyToken, async (req, res) => {
+app.get('/categorys', async (req, res) => {
     console.log('GET /categorys called');
     try {
       const [result] = await db.execute('SELECT * FROM categorys');
@@ -183,7 +183,7 @@ app.get('/categorys', verifyToken, async (req, res) => {
     }
 });
 
-app.get('/category:id', verifyToken, async (req, res) => {
+app.get('/category:id', async (req, res) => {
   try {
     
     const id = parseInt(req.params.id);
@@ -204,7 +204,7 @@ app.get('/category:id', verifyToken, async (req, res) => {
     }
   });
 
-app.post('/ropes', verifyToken, async (req, res) => {
+app.post('/ropes', async (req, res) => {
   
   const {hoist_rope, governer_rope, whisper_flex ,travel_cable, travel_multi, hoistway , job_id, car} = req.body;
   
@@ -224,7 +224,7 @@ app.post('/ropes', verifyToken, async (req, res) => {
   }
 });
 
-app.get('/jobs', verifyToken, async (req, res) => {
+app.get('/jobs', async (req, res) => {
   try {
     const [result] = await db.execute('SELECT * FROM jobs');
     res.json(result);
@@ -254,7 +254,7 @@ app.post('/upload-pic', upload.single('image'), (req, res) => {
   }
 });
 
-app.get('/orders', verifyToken, async (req, res) => {
+app.get('/orders', async (req, res) => {
   try {
     const [result] = await db.execute('SELECT * FROM orders');
     res.json(result);
@@ -265,7 +265,7 @@ app.get('/orders', verifyToken, async (req, res) => {
   }
 })
 
-app.post('/orders', verifyToken, async (req, res) => {
+app.post('/orders', async (req, res) => {
   const { job_id, car_number, status, name} = req.body;
 
   try {
@@ -281,7 +281,7 @@ app.post('/orders', verifyToken, async (req, res) => {
   }
 })
 
-app.get('/order-items:id', verifyToken,     async (req, res) => {
+app.get('/order-items:id', async (req, res) => {
 
   try{
     const order_id = parseInt(req.params.id);
@@ -306,7 +306,7 @@ app.get('/order-items:id', verifyToken,     async (req, res) => {
     }
   });
 
-app.post('/order-items', verifyToken, async (req, res) => {
+app.post('/order-items', async (req, res) => {
   const { items } = req.body;
   try {
     const values = items.map(item => [item.order_id, item.item_id, item.quantity]);

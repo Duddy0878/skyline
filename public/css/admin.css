@@ -1,4 +1,9 @@
 
+:root{
+    --main-color: #FAB519;
+
+    --dark-color: #887037;
+}
 
 
 body{
@@ -12,7 +17,7 @@ body{
         background-position: center;
         background-position-y: -40%; */ 
 
-        background: black;
+        background-color: black;
         
 }
 
@@ -26,7 +31,7 @@ h2{
 
 /* This class targets the main white container box of the alert */
     .my-swal-popup {
-        border: 3px solid #FAB519; /* Example border: 5px thick, solid, green color */
+        border: 3px solid var(--main-color); /* Example border: 5px thick, solid, green color */
         /* Optional: you can customize border radius too */
         border-radius: 20px;
     }
@@ -39,9 +44,9 @@ h2{
 
     .categoryHeader{
         width: 90%;
-        border-bottom: #FAB519 2px solid;
+        border-bottom: var(--main-color) 2px solid;
         margin: 20px 0px 10px 20px;
-        color: #FAB519;
+        color: var(--main-color);
     }
 
 .container{
@@ -53,7 +58,7 @@ h2{
     max-height: 225px;
     max-width: 150px;
     overflow: hidden;
-    background: #FAB519;
+    background: var(--main-color);
 }
 
 .container:hover{
@@ -73,7 +78,7 @@ h2{
     height: 100%;
     width: 100%;
     object-fit: fill;
-    border: #FAB519 2px solid;
+    border: var(--main-color) 2px solid;
     box-sizing: border-box;
 }
 
@@ -115,15 +120,15 @@ h2{
     padding-top: 5%;
     padding-bottom: 5%;
     width: 200px;
-    border: #FAB519 2px solid;
+    border: var(--main-color) 2px solid;
     border-radius: 5%;
     font-size: 20px;
-    color: #FAB519;
+    color: var(--main-color);
     background: black;
 }
 
 .side .buttons button:hover{
-    background: #FAB519;
+    background: var(--main-color);
     color: white;
     cursor: pointer;
     transition: 200ms;
@@ -131,7 +136,7 @@ h2{
 
 
 .forms{
-    border: #FAB519 3px solid;
+    border: var(--main-color) 3px solid;
     background: black;
     height: 78vh;
     position: absolute;
@@ -140,7 +145,7 @@ h2{
 }
 
   .forms{
-    color: #FAB519;
+    color: var(--main-color);
   }
 
   .forms > div{
@@ -153,9 +158,9 @@ h2{
     font-size: 15px;
     background: transparent;
     border-radius: 2%;
-    border: #FAB519 1px solid;
+    border: var(--main-color) 1px solid;
     
-    color: #FAB519;
+    color: var(--main-color);
   }
 
   .newF{
@@ -226,9 +231,9 @@ h2{
     .newF button[type="submit"], .newF button[type="reset"]{
        padding: 2%;
        background: transparent;
-       border: #FAB519 2px solid;
+       border: var(--main-color) 2px solid;
        border-radius: 5%;
-       color: #FAB519;
+       color: var(--main-color);
        width: 30%;
        margin-top: 7%;
     }
@@ -241,7 +246,7 @@ h2{
     }
 
     .newF button[type="submit"]:hover, .newF button[type="reset"]:hover{
-        background: #FAB519;
+        background: var(--main-color);
         color: white;
         cursor: pointer;
         transition: 200ms;
@@ -271,27 +276,27 @@ h2{
         border-radius: 2%;
         width: 72%;
         border: none;
-        border-bottom : #FAB519 1px solid;
-        color: #FAB519;
+        border-bottom : var(--main-color) 1px solid;
+        color: var(--main-color);
     }
 
    input[type="checkbox"]{
-       accent-color: #FAB519;
+       accent-color: var(--main-color);
 
     }
 
     .ropeForm button{
        padding: 2%;
        background: transparent;
-       border: #FAB519 2px solid;
+       border: var(--main-color) 2px solid;
        border-radius: 5%;
-       color: #FAB519;
+       color: var(--main-color);
        width: 30%;
        margin-top: 15%;
     }
 
     .ropeForm button:hover{
-        background: #FAB519;
+        background: var(--main-color);
         color: white;
         cursor: pointer;
         transition: 200ms;
@@ -331,26 +336,26 @@ h2{
             background: transparent;
             border-radius: 2%;
             border: none;
-            border-bottom: #FAB519 1px solid;
-            color: #FAB519;
+            border-bottom: var(--main-color) 1px solid;
+            color: var(--main-color);
         }
 
         .resultsContainer input::placeholder{
-            color: #FAB519;
+            color: var(--main-color);
         }
 
         .resultsContainer button{
             padding: 4%;
             background: transparent;
-            border: #FAB519 2px solid;
+            border: var(--main-color) 2px solid;
             border-radius: 5%;
-            color: #FAB519;
+            color: var(--main-color);
             width: 40%;
             margin-top: 10%;
         }
 
         .resultsContainer button:hover{
-            background: #FAB519;
+            background: var(--main-color);
             color: white;
             cursor: pointer;
             transition: 200ms;
@@ -377,15 +382,15 @@ h2{
     .addInventory button{
        padding: 2%;
        background: transparent;
-       border: #FAB519 2px solid;
+       border: var(--main-color) 2px solid;
        border-radius: 5%;
-       color: #FAB519;
+       color: var(--main-color);
        width: 30%;
        margin-top: 15%;
     }
 
     .addInventory button:hover{
-        background: #FAB519;
+        background: var(--main-color);
         color: white;
         cursor: pointer;
         transition: 200ms;
@@ -442,7 +447,7 @@ h2{
 .orders .each{
     display: grid;
     grid-template-columns: 3fr 1fr;
-    border-bottom: #FAB519 2px solid;
+    border-bottom: var(--main-color) 2px solid;
     padding-bottom: 10px;
 }
 
@@ -462,9 +467,9 @@ h2{
     padding: 2% 3%;
     margin: 3%;
    display: grid;
-   color: #FAB519;
+   color: var(--main-color);
    justify-self: center;
-   border: #FAB519 1px solid;
+   border: var(--main-color) 1px solid;
     width: 80%;
     font-size: 16px;
     background-color: transparent;
@@ -473,7 +478,7 @@ h2{
 }
 
 .orders .buttonsO button:hover {
-    background-color: #FAB519;
+    background-color: var(--main-color);
     color: black;
 }
 
@@ -481,7 +486,7 @@ h2{
     display: none;
     width: 75%;
     padding: 5%;
-    color: #FAB519;
+    color: var(--main-color);
 }
 
 .eachOrderView .headerO{
@@ -492,7 +497,7 @@ h2{
 
     align-items: center;
     margin-bottom: 50px;
-    border-bottom: #FAB519 2px solid;
+    border-bottom: var(--main-color) 2px solid;
 }
 
 .eachOrderView .headerO .printOrder svg, .eachOrderView .headerO .closeOrderView svg{
