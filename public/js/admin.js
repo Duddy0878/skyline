@@ -63,7 +63,7 @@ socket.on('item-added', () => {
             itemsDiv.appendChild(container)
          }
       
-           }
+         }
 
         async function loadCategorys(){
             
@@ -101,8 +101,9 @@ socket.on('item-added', () => {
                     status = false;
                 }
                 if(id === 'editItems' || id === 'addInventory'){
-                      status = id;
-                      await getItem(counter)
+                    window.location.href = '/html/invotory.html'
+                    //   status = id;
+                    //   await getItem(counter)
                 }
                 if(id === 'orders'){
                     status = id;

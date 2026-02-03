@@ -60,7 +60,7 @@ socket.on("item-added", () => {
     
     
     
-}
+    }
 
 loadItems();
 
@@ -135,6 +135,8 @@ document.querySelector('button').addEventListener('click', async () => {
             orderItem.order_id = orderId;
         }
         loadingOn();
+        console.log(orderItems);
+        
         let sendOrderItems = await postApi('/order-items', {items: orderItems});
         if(sendOrderItems.success){
             swal.fire({

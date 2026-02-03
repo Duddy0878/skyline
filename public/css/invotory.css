@@ -1,0 +1,81 @@
+
+
+.items {
+
+}
+
+/* This class targets the main white container box of the alert */
+    .my-swal-popup {
+        border: 3px solid #FAB519; /* Example border: 5px thick, solid, green color */
+        /* Optional: you can customize border radius too */
+        border-radius: 20px;
+    }
+
+
+.categoryHeader{
+    width: 90%;
+    border-bottom: #FAB519 2px solid;
+    margin: 20px 0px 10px 20px;
+    color: #FAB519;
+}
+
+.items table{
+    width: 50%;
+     border: black 1px solid;
+     outline: white 5px solid;
+
+}
+
+.items th, .items td{
+    padding: 5px;
+    text-align: center;
+    color: black;
+    border: none;
+    border-right: black 1px solid;
+}
+
+.items thead{
+    border-bottom: black 2px solid;
+}
+
+.items th{
+    background-color: darkgray;
+    
+}
+
+.items tr:nth-child(even) {
+    background-color: lightgrey;
+    border: none;
+    
+}
+
+.items tr:nth-child(odd) {
+    background-color: white;
+    border: none;
+    
+}
+
+.loading{
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+       background: rgba(0, 0, 0, 0.5);
+       width: 100%;
+       height: 100%;
+       align-items: center;
+       justify-content: center;
+
+}
+
+        .spinner {
+        transform-origin: 50% 50%;
+        animation: spin 1s linear infinite;
+    }
+
+            @keyframes spin {
+              to {
+                transform: rotate(360deg);
+              }
+            }
