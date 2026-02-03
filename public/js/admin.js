@@ -172,7 +172,8 @@ socket.on('item-added', () => {
                     name,
                     img,
                     cate_id,
-                    size
+                    size,
+                    quantity: 0
                 }
 
                 
