@@ -78,6 +78,7 @@ document.querySelector('button').addEventListener('click', async () => {
     let itemElements = document.querySelectorAll('.container, .containerB, .li');
     itemElements.forEach(container => {
         let itemId = container.id;
+        if(itemId === '') return; 
         let quantityInput = container.querySelector('input');
         let quantity = parseInt(quantityInput.value);
         if (quantity > 0) {
