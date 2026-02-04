@@ -1,0 +1,173 @@
+
+:root{
+    --main-color: black;
+
+    --dark-color: black;
+}
+
+
+body{
+    background-color: #f8f5ee;
+
+    display: grid;
+    grid-template-columns: 1.5fr 3fr;
+    color: black;
+}
+
+.my-swal-popup {
+    border: 3px solid var(--main-color); /* Example border: 5px thick, solid, green color */
+    /* Optional: you can customize border radius too */
+    border-radius: 20px;
+}
+
+
+/* #region orders */
+
+.side1{
+    border-right: var(--main-color) 2px solid;
+    padding: 5%;
+    height: 90vh;
+    overflow-y: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; 
+}
+
+.side1::-webkit-scrollbar {
+  display: none; 
+}
+
+.side1 .header{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2%;
+    border-bottom: var(--main-color) 2px solid;
+    font-size: 25px;
+    padding-bottom: 0%;
+}
+
+.side1 .header div{
+    text-align: center;
+    cursor: pointer;
+    padding: 2%;
+}
+
+.side1 .header .active{
+    background: black;
+    color: white;
+    font-weight: bold;
+}
+
+.orders{
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 3%;
+}
+
+.orders .each{
+    display: grid;
+    grid-template-columns: 1fr;
+    border-bottom: var(--main-color) 2px solid;
+    padding: 3%;
+}
+
+.orders .each:hover{
+    background: rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    transition: 200ms;
+}
+
+.orders .infoO{
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr;
+    gap: 20px;
+    
+}
+
+.side2{
+    padding: 5%;
+    height: 90vh;
+    overflow-y: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; 
+}
+
+.eachOrderView{
+    display: none;
+    width: 75%;
+    padding: 1%;
+    padding-left: 4%;
+    color: var(--main-color);
+}
+
+.eachOrderView .headerO{
+    display: grid;
+    grid-template-columns: 6fr 0.5fr 0.5fr 0.5fr;
+    font-size: 20px;
+
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: var(--main-color) 2px solid;
+}
+
+.eachOrderView .headerO svg{
+    justify-self: center;
+    cursor: pointer;
+}
+
+.eachOrderView .headerO svg:hover {
+    transform: scale(1.2);
+    transition: 200ms;
+}
+
+.eachOrderView table{
+    width: 100%;
+     border: black 1px solid;
+     outline: white 5px solid;
+
+}
+
+.eachOrderView th, .eachOrderView td{
+    padding: 5px;
+    text-align: center;
+    color: black;
+    border: none;
+    border-right: black 1px solid;
+}
+
+.eachOrderView thead{
+    border-bottom: black 2px solid;
+}
+
+.eachOrderView th{
+    background-color: darkgray;
+    
+}
+
+.eachOrderView tr:nth-child(even) {
+    background-color: lightgrey;
+    border: none;
+    
+}
+
+.eachOrderView tr:nth-child(odd) {
+    background-color: white;
+    border: none;
+    
+}
+
+
+/* #endregion orders */
+
+@media print {
+  body * {
+    display: none !important;
+  }
+  .side2, .side2 * {
+    display: block !important;
+  }
+}
+
+
+
+
+

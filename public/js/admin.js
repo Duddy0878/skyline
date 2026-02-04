@@ -107,7 +107,7 @@ socket.on('item-added', () => {
                 }
                 if(id === 'orders'){
                     status = id;
-                    orders()
+                    window.location.href = '/html/ordersList.html'
                 }
                 counter++;
             })
@@ -417,116 +417,6 @@ socket.on('item-added', () => {
                 
             })
 
-        }
-
-        let countNewOrders = 0;
-       async function orders(){
-            
-            let orders = await fetchApi('/orders')
-            if(countNewOrders === orders.length) return;
-            let jobs = await fetchApi('/jobs')
-
-            let ordersContainer = document.querySelector('.orders')
-            ordersContainer.innerHTML = ''
-
-            for (const order of orders) {
-                let div = document.createElement('div')
-                div.className = 'each'
-                countNewOrders++;
-                let curentJob = jobs.find(job => job.id === order.job_id);
-
-
-                let infoDiv = document.createElement('div')
-                infoDiv.className = 'infoO'
-                infoDiv.innerHTML = `       
-                           <div class="employee">
-                    ${upperCaseFirstLetter(order.name)}
-                </div>
-                  <div class="address">
-                    ${curentJob.address + ' Car ' + order.car_number}
-                  </div>
-                  <div class="dateO">
-                    ${dayjs(order.date).format('MMMM D, YYYY')}
-                  </div>
-                  <div class="orderNumber">
-                     Order #000${order.id}
-                    </div>
-                  <div class="status">
-                    Status: ${order.status}
-                  </div>
-                <div class="phase">
-                  Phase: 1
-                </div>
-                `
-                let buttonsDiv = document.createElement('div')
-                buttonsDiv.className = 'buttonsO'
-                buttonsDiv.innerHTML = `
-                                  <button id="${order.id}" class="viewOrder">View Order</button>
-                  <button class="approve">Approve</button>`
-
-                div.appendChild(infoDiv)
-                div.appendChild(buttonsDiv)
-                ordersContainer.appendChild(div)
-            }
-
-            document.querySelectorAll('.viewOrder').forEach( (btn) => {
-                btn.addEventListener('click', async (e) => {
-                    let orderDiv = e.target.closest('.buttonsO')
-                    let id = orderDiv.querySelector('.viewOrder').id
-                    let orderData = orders.find(o => o.id == id)
-
-                    viewOrder(id, orderData, jobs.find(job => job.id === orderData.job_id).address)
-
-                })
-            })
-            
-          
-        }
-
-        async function viewOrder(id,orderData,curentJob){
-            let orderItems =  await fetchApiWithId('/order-items', id)
-
-            document.querySelector('.items').style.display = 'none';
-
-            let eachOrderView = document.querySelector('.eachOrderView')
-            eachOrderView.innerHTML = ''
-
-            let headerDiv = document.createElement('div')
-            headerDiv.className = 'headerO'
-            headerDiv.innerHTML = `
-                <h4> Order #000${id} &nbsp; Job: ${curentJob} &nbsp; Car: ${orderData.car_number} &nbsp; Phase: 1 </h4> 
-                <div class="printOrder"> <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FAB519"><path d="M640-640v-120H320v120h-80v-200h480v200h-80Zm-480 80h640-640Zm560 100q17 0 28.5-11.5T760-500q0-17-11.5-28.5T720-540q-17 0-28.5 11.5T680-500q0 17 11.5 28.5T720-460Zm-80 260v-160H320v160h320Zm80 80H240v-160H80v-240q0-51 35-85.5t85-34.5h560q51 0 85.5 34.5T880-520v240H720v160Zm80-240v-160q0-17-11.5-28.5T760-560H200q-17 0-28.5 11.5T160-520v160h80v-80h480v80h80Z"/></svg> </div>
-                <div class="closeOrderView"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FAB519"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg> </div>
-
-            `
-            eachOrderView.appendChild(headerDiv)
-            let table = document.createElement('table')
-            let header = document.createElement('thead')
-            let headerRow = document.createElement('tr')
-            header.appendChild(headerRow)
-            table.appendChild(header)
-            headerRow.innerHTML = `
-                <th> QTY </th>
-                <th> Item Name </th>
-                <th> Shop? </th>
-                <th> Price </th>
-            `
-            let body = document.createElement('tbody')
-            table.appendChild(body)
-            eachOrderView.style.display = 'block'
-            for (const item of orderItems) {
-                let row = document.createElement('tr')
-                row.className = 'itemRow'
-                row.innerHTML = `
-                    <td> ${item.quantity} </td>
-                    <td> ${item.name} </td>
-                    <td style="${item.shop? 'background-color: #FAB519' : ''}"> </td>
-                    <td> ${item.price || ''} </td>
-                `
-                body.appendChild(row)
-            }
-
-            eachOrderView.appendChild(table)
         }
 
         function editItems(){
