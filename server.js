@@ -270,13 +270,13 @@ app.get('/orders', async (req, res) => {
 })
 
 app.post('/orders', async (req, res) => {
-  const { job_id, car_number, status, name} = req.body;
+  const { job_id, car_number, status, name, custom } = req.body;
 
   try {
     const [result] = await db.execute(
-      `INSERT INTO orders(job_id, car_number,status, name)
-      VALUES (?,?,?,?)`,
-      [job_id, car_number, status, name]
+      `INSERT INTO orders(job_id, car_number,status, name, custom)
+      VALUES (?,?,?,?,?)`,
+      [job_id, car_number, status, name, custom]
     );
     res.status(201).json({ success: true, insertedId: result.insertId });
   } catch (error) {

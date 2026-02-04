@@ -86,6 +86,11 @@ document.querySelector('button').addEventListener('click', async () => {
         }
     });
 
+    let customText = document.querySelector('.custom textarea').value;
+    if(customText.trim() === ''){
+        customText = null;
+    }
+
     let employee = document.querySelector('.nameE input').value;
     let jobsiteSelect = document.querySelector('#jobsiteSelect');
     let jobSite = jobsiteSelect.value;
@@ -129,7 +134,7 @@ document.querySelector('button').addEventListener('click', async () => {
         return;
     }
 
-    let sendOrder = await postApi('/orders', {job_id: jobSite, car_number: carNumber, status: 'pending',name: employee})
+    let sendOrder = await postApi('/orders', {job_id: jobSite, car_number: carNumber, status: 'pending',name: employee, custom: customText})
     let orderId = sendOrder.insertedId;
     if(orderId){
         for(let orderItem of orderItems){
