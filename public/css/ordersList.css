@@ -92,18 +92,27 @@ body{
 }
 
 .eachOrderView{
-    display: none;
-    width: 75%;
+    position: relative;
+    width: 100%;
     padding: 1%;
     padding-left: 4%;
     color: var(--main-color);
+}
+
+.eachOrderView img{
+    position: absolute;
+    margin-top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    
 }
 
 .eachOrderView .headerO{
     display: grid;
     grid-template-columns: 6fr 0.5fr 0.5fr 0.5fr;
     font-size: 20px;
-
+    width: 60%;
     align-items: center;
     margin-bottom: 20px;
     border-bottom: var(--main-color) 2px solid;
@@ -120,7 +129,7 @@ body{
 }
 
 .eachOrderView table{
-    width: 100%;
+    width: 60%;
      border: black 1px solid;
      outline: white 5px solid;
 
