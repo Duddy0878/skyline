@@ -327,7 +327,7 @@ function createCard(item,yes=false,word){
     let div = document.querySelector('.items');
 
     if(!yes){
-
+     
 
     let categoryFind = category.find(cat => cat.id === item[0].cate_id);
 
@@ -358,24 +358,17 @@ function createCard(item,yes=false,word){
    
     ropeContainer.innerHTML = `
         <div class="ropeItem">
-         <h2> Requested Ropes Package : &nbsp; <input type="checkbox" /> </h2><br/>
-          Includes: Hoist Ropes, governer Ropes, whisper flex, 
-          and shackles with springs,
-          dampning device kit,
-          compsaation chain installation kit, <br/>
-          travel cable, travel multi, hoistway ropes,
-          kellem grips, hitch brackets,
+        <h2> Requested Ropes Package : &nbsp; <input type="checkbox" /> </h2> 
+        </div>
     `
 
     div.appendChild(ropeContainer);
 
-
     }
     
-            
+     item.sort((a, b) => a.order - b.order);
 
     for(let it of item){
-
 
         let container = document.createElement('div');
         container.className = 'container';

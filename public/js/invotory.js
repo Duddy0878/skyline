@@ -276,15 +276,7 @@ function editItem() {
                 } else {
                     alert('Failed to update item');
                 }
-                tr.innerHTML = `
-                    <td>${tr.id}</td>
-                    <td>${updatedItem.name}</td>
-                    <td>$${updatedItem.shop}</td>
-                    <td>${updatedItem.quantity}</td>
-                    <td>$${updatedItem.mega}</td>
-                    <td>$${updatedItem.draka}</td>
-                    <td>$${updatedItem.wurtec}</td>
-                `;
+               loadItems();
                 
                 status = false;
             }

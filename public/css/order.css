@@ -25,6 +25,10 @@
         border-radius: 20px;
     }
 
+    .ropeContainer{
+   width: 100%;
+    }
+
 .container {
     display: flex;
     flex-direction: column;
