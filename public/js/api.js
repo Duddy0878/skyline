@@ -52,7 +52,7 @@ export async function postApi(api, data) {
 
 
     export async function patchApi (api, id, data){
-
+  
               try {
                  const res = await fetch(`${api}${id}`, {
                    method: 'PATCH',

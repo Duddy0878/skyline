@@ -61,44 +61,7 @@ import {fetchApi, fetchApiWithId , postApi , patchApi} from './api.js';
 
             console.log(allKinds);
         for(let kind in allKinds){
-            
-        let containerB = document.createElement('div');
-        containerB.className = 'containerB';
-        let extraDiv = document.createElement('div');
-        extraDiv.className = 'extraDiv';
-        let mainExtra = document.createElement('div');
-        mainExtra.className = 'mainExtra';
-
-        let name = document.createElement('div');
-        name.className = 'name';
-        name.innerHTML = `<p style="font-size: 25px">${upperCaseFirstLetter(kind)}</p>`;
-        let img = document.createElement('div');
-        img.className = 'pic';
-        img.innerHTML = `<img src="/${allKinds[kind][0].img}" alt="" onerror="this.src='/pic/Asset 3@4x.png'">`
-        mainExtra.appendChild(name);
-        mainExtra.appendChild(img);
-        containerB.appendChild(mainExtra);
-        divB.appendChild(containerB);
-            allKinds[kind].sort((a, b) => parseSize(a.size) - parseSize(b.size));
-            for(let it of allKinds[kind]){
-                let container = document.createElement('div');
-                container.className = 'li'
-                container.id = it.id;
-
-                let name = document.createElement('div');
-                name.className = 'name';
-                name.innerHTML = `${nameTillNumber(it.name, 2)}`;
-
-                let quantity = document.createElement('div');
-                quantity.className = 'quantity';
-                quantity.innerHTML = `<input type="number" placeholder="0"></input>`;
-                container.appendChild(name);
-                container.appendChild(quantity);
-                extraDiv.appendChild(container);
-
-            }
-
-            containerB.appendChild(extraDiv);
+            createCard(allKinds[kind]);
             
         }
 
@@ -269,3 +232,64 @@ function parseSize(size) {
     // Handle plain numbers
     return parseFloat(size) || 0;
 }
+
+function editItem() {
+    let status = false;
+    document.querySelector(`.items`).addEventListener('dblclick', async (e) => {
+        e.preventDefault();
+        status = true;
+        let itemId = e.target.closest('tr').id;
+        let item = await fetchApiWithId('/items', itemId);
+
+        
+        const tr = e.target.closest('tr');
+        let measure = tr.querySelector('td:nth-child(2)').getBoundingClientRect().width;
+        console.log(measure);
+        
+        tr.innerHTML = `
+            <td>${tr.id}</td>
+            <td><input type="text" value="${item.name}" /></td>
+            <td><input type="number" value="${item.shop}" /></td>
+            <td><input type="number" value="${item.quantity}" /></td>
+            <td><input type="number" value="${item.mega}" /></td>
+            <td><input type="number" value="${item.draka}" /></td>
+            <td><input type="number" value="${item.wurtec}" /></td>
+        `;
+
+        tr.querySelector('td:nth-child(2)').style.width = `${measure}px`;
+        const inputs = tr.querySelectorAll('input');
+        document.addEventListener('click', async (e) => {
+            if (!tr.contains(e.target) && status === true) {
+                const updatedItem = {
+                    name: inputs[0].value,
+                    shop: parseFloat(inputs[1].value),
+                    quantity: parseFloat(inputs[2].value),
+                    mega: parseFloat(inputs[3].value),
+                    draka: parseFloat(inputs[4].value),
+                    wurtec: parseFloat(inputs[5].value)
+                };
+                let response = await patchApi(`/items`, itemId, updatedItem);
+                console.log(response);
+                
+                if (response.success) {
+                    alert('Item updated successfully');
+                } else {
+                    alert('Failed to update item');
+                }
+                tr.innerHTML = `
+                    <td>${tr.id}</td>
+                    <td>${updatedItem.name}</td>
+                    <td>$${updatedItem.shop}</td>
+                    <td>${updatedItem.quantity}</td>
+                    <td>$${updatedItem.mega}</td>
+                    <td>$${updatedItem.draka}</td>
+                    <td>$${updatedItem.wurtec}</td>
+                `;
+                
+                status = false;
+            }
+        })
+    })
+}
+
+editItem()

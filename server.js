@@ -131,7 +131,8 @@ app.patch('/items:id', async (req, res) => {
   try {
     
     const id = parseInt(req.params.id);
-    const { name, img, cate_id ,size, quantity} = req.body;
+    console.log('PATCH /item called with id:', id);
+    const { name, img, cate_id ,size,shop, quantity, mega, draka, wurtec} = req.body;
 
     
       const updates = []
@@ -157,6 +158,28 @@ app.patch('/items:id', async (req, res) => {
         updates.push('quantity = ?')
         values.push(quantity)
       }
+
+      if (mega !== undefined) {
+        updates.push('mega = ?')
+        values.push(mega)
+      }
+
+      if (draka !== undefined) {
+        updates.push('draka = ?')
+        values.push(draka)
+      }
+
+      if (wurtec !== undefined) {
+        updates.push('wurtec = ?')
+        values.push(wurtec)
+      }
+      
+
+      if (shop !== undefined) {
+        updates.push('shop = ?')
+        values.push(shop)
+      }
+
       if (updates.length > 0) {
         const sql = `UPDATE items SET ${updates.join(', ')} WHERE id = ?`;
         values.push(id);

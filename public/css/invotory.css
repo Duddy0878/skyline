@@ -69,6 +69,16 @@
 
 }
 
+.items tr input{
+  width: 70%;
+  height: 90%;
+  border: none;
+  background: transparent;
+  font: inherit;
+  margin: 0;
+  box-sizing: border-box;
+}
+
         .spinner {
         transform-origin: 50% 50%;
         animation: spin 1s linear infinite;

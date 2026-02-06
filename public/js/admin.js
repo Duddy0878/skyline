@@ -5,7 +5,7 @@ const socket = io();
 
 socket.on('item-added', () => {
   // Reload items when notified
-  loadItems();
+
 });
 
   const token = localStorage.getItem('authToken');
@@ -13,57 +13,9 @@ socket.on('item-added', () => {
     window.location.href = '/html/login.html';
   }
 
-        loadItems()
         loadCategorys()
         buttonsClick()
         addItem()
-
-        let receiver 
-
-        async function loadItems(){
-
-         let items = await fetchApi('/items')
-
-         let itemsDiv = document.querySelector('.items')
-         itemsDiv.innerHTML = ''
-         var cateCheck = '';
-         items.sort((a, b) => a.cate_id - b.cate_id);
-
-         let category = await fetchApi('/categorys')
-
-         for (const item of items) {
-            let currentCategory = category.find(cat => cat.id === item.cate_id);
-            if(item.cate_id !== cateCheck){
-                cateCheck = item.cate_id
-                let categoryHeader = document.createElement('div')
-                categoryHeader.className = 'categoryHeader'
-                categoryHeader.innerHTML = `<h2> ${upperCaseFirstLetter(currentCategory.name)} </h2>`
-                itemsDiv.appendChild(categoryHeader)
-            }
-
-            let container = document.createElement('div')
-            container.className = 'container'
-            container.id = item.id
-
-            let pic = document.createElement('div')
-            pic.className = 'pic'
-            pic.innerHTML = `<img src="/${item.img}" alt="" onerror="this.src='/pic/Asset 3@4x.png'">`
-            container.appendChild(pic)                                                                                                                                                                                                                                                                                                                                                 
-
-            let name = document.createElement('div')
-            name.className = 'name'
-            name.innerHTML = `<p> ${item.name} </p> `
-            container.appendChild(name)
-
-            let cate = document.createElement('div')
-            cate.className = 'cate'
-            container.appendChild(cate)
-            cate.style.background = currentCategory.color
-
-            itemsDiv.appendChild(container)
-         }
-      
-         }
 
         async function loadCategorys(){
             
@@ -79,7 +31,6 @@ socket.on('item-added', () => {
             }
         }
 
-        let status = false;
         
         function buttonsClick(){
             let click = document.querySelector('.side .buttons')
@@ -88,8 +39,6 @@ socket.on('item-added', () => {
                 let btn = e.target
                 let id = btn.id
                 if(id === 'more'){
-                    document.querySelector(`.forms`).classList.remove('active')
-                    status = false;
                     return
                 }
                 document.querySelector(`.forms`).classList.add('active')
@@ -98,18 +47,13 @@ socket.on('item-added', () => {
                 })              
                 document.querySelector(`.forms .${id}`).style.display = 'GRID'
                 if(id === 'newF'){
-                    status = false;
                 }
-                if(id === 'editItems' || id === 'addInventory'){
+                if(id === 'addInventory'){
                     window.location.href = '/html/invotory.html'
-                    //   status = id;
-                    //   await getItem(counter)
                 }
                 if(id === 'orders'){
-                    status = id;
                     window.location.href = '/html/ordersList.html'
                 }
-                counter++;
             })
         }
 
@@ -392,79 +336,6 @@ socket.on('item-added', () => {
                 
                 input.appendChild(option)
             })
-        }
-
-        async function getItem(counter){
-            if (counter > 0) return;
-            let id = '';
-            document.querySelector('.items').addEventListener('click', async (e)=>{
-                if(!status) return;
-                let itemDiv = e.target.closest('.container') 
-                if(!itemDiv) return;
-                id = itemDiv.id 
-                let item = await fetchApiWithId('/items', id)
-
-                if(status === 'orders'){
-                }
-                if(status === 'editItems'){
-
-                }
-                if(status === 'addInventory'){
-                    addInventory(item)
-                }
-
-
-                
-            })
-
-        }
-
-        function editItems(){
-
-        }
-
-        async function addInventory(item){
-            let addDiv = document.querySelector('.addInventory')
-            addDiv.innerHTML = ''
-
-            let div = document.createElement('div')
-            div.className = 'itemInInventory'
-            addDiv.appendChild(div)
-            
-            let img = document.createElement('div')
-            img.style.justifyContent = 'center'
-            img.innerHTML = `<img src="/${item.img}" alt="" style="width:100%;height:300px;object-fit:contain;" onerror="this.src='/pic/Asset%203%404x.png'">`
-            div.appendChild(img)
-            
-            let name = document.createElement('div')
-            name.style.fontSize = '24px'
-            name.innerHTML = `<p> ${item.name} </p> `
-            div.appendChild(name)
-
-
-            let input = document.createElement('input')
-            input.type = 'number'
-            input.style.width = '50%'
-            input.placeholder = 'Quantity to add'
-            addDiv.appendChild(input)
-
-            let button = document.createElement('button')
-            button.innerText = 'Add Inventory'
-            addDiv.appendChild(button)
-      
-            button.addEventListener('click', async () => {
-                let quantity = parseInt(input.value, 10);
-                if (isNaN(quantity) || quantity <= 0) {
-                    alert('Please enter a valid quantity');
-                    return;
-                }
-                let sent = await patchApi('/items', item.id, {quantity: quantity});
-                if (sent.success) {
-                    alert('Inventory added successfully');
-                } else {
-                    alert('Failed to add inventory');
-                }
-            });
         }
 
         function upperCaseFirstLetter(string) {

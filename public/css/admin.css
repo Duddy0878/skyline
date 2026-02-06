@@ -35,64 +35,12 @@ h2{
         /* Optional: you can customize border radius too */
         border-radius: 20px;
     }
-    .items{
-    padding: 5%;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    }
-
-    .categoryHeader{
-        width: 90%;
-        border-bottom: var(--main-color) 2px solid;
-        margin: 20px 0px 10px 20px;
-        color: var(--main-color);
-    }
-
-.container{
-    /* border: #FAB519 3px solid; */
-    position: relative;
-    background-color: white;
-    min-height: 200px;
-    min-width: 150px;
-    max-height: 225px;
-    max-width: 150px;
-    overflow: hidden;
-    background: var(--main-color);
-}
-
-.container:hover{
-    transform: scale(0.9);
-    transition: 100ms;
-    cursor: pointer;
-}
-
-.pic{
-    height: 150px;
-    overflow: hidden;
-    background: black;
-    padding-bottom: 15px;
-}
-
-.container img{
-    height: 100%;
-    width: 100%;
-    object-fit: fill;
-    border: var(--main-color) 2px solid;
-    box-sizing: border-box;
-}
-
-.container p{
-    font-size: 15px;
-    text-align: center;
-}
-
-.container .cate{
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    width: 3%;
-    height: 3%;
+.adminView{
+    display: grid;
+    border: 2px solid var(--main-color);
+    width: 90%;
+    margin-top: 5%;
+    height: 85vh;
 }
 
 .side{
